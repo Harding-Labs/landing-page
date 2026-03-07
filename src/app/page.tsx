@@ -30,7 +30,7 @@ const stack = [
 
 export default function Home() {
   return (
-    <div className="scroll-smooth relative min-h-screen overflow-hidden bg-[#05070b] text-white">
+    <div className="relative min-h-screen overflow-hidden bg-[#05070b] text-white">
       {/* Ambient background gradients */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-32 top-12 h-80 w-80 rounded-full bg-sky-500/20 blur-3xl" />
