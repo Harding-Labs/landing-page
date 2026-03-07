@@ -2,17 +2,17 @@ const highlights = [
   {
     title: "Applied AI, not hype",
     description:
-      "We ship production-ready systems that improve real workflows, from vision models to human-in-the-loop tooling.",
+      "We build and launch our own products that turn real-world workflows into durable, revenue-generating platforms.",
   },
   {
-    title: "Design-led engineering",
+    title: "Incubation over services",
     description:
-      "Every interaction is built to feel effortless: elegant UI, rapid feedback, and measurable business impact.",
+      "Harding Labs is an incubator for our ideas, not a services studio for hire. We stay focused on what we own.",
   },
   {
     title: "StageSnap first",
     description:
-      "Our launch product brings cinematic real-estate staging to life with AI, turning raw photos into market-ready scenes.",
+      "StageSnap is our flagship launch: AI staging that turns raw real-estate photos into market-ready listings.",
   },
 ];
 
@@ -20,7 +20,7 @@ const stack = [
   "Computer Vision",
   "Generative Imaging",
   "Product Strategy",
-  "Full-Stack Delivery",
+  "Launch Systems",
   "Workflow Automation",
   "Human-Centered UX",
 ];
@@ -37,9 +37,29 @@ export default function Home() {
       <main className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col gap-24 px-6 pb-20 pt-10 sm:px-10">
         <nav className="flex items-center justify-between text-sm text-slate-200/80">
           <div className="flex items-center gap-2">
-            <span className="h-3 w-3 rounded-full bg-sky-400 shadow-[0_0_16px_rgba(56,189,248,0.9)]" />
+            <span className="inline-flex items-center justify-center rounded-full border border-sky-400/40 bg-sky-400/10 p-1.5 shadow-[0_0_18px_rgba(56,189,248,0.35)]">
+              <svg
+                aria-hidden="true"
+                className="h-4 w-4 text-sky-200"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M12 2.5L20.5 7.5V16.5L12 21.5L3.5 16.5V7.5L12 2.5Z"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                />
+                <path
+                  d="M7.5 9.5L12 12L16.5 9.5M12 12V17"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
             <span className="font-semibold tracking-[0.2em] text-slate-200">
-              HARDING LABS
+              Harding Labs
             </span>
           </div>
           <div className="hidden items-center gap-6 sm:flex">
@@ -69,23 +89,24 @@ export default function Home() {
               style={{ animationDelay: "0.1s" }}
             >
               <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              Building the next wave of AI products
+              Incubating the next wave of AI products
             </div>
             <div className="space-y-6">
               <h1
                 className="animate-fade-up text-balance text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl"
                 style={{ animationDelay: "0.2s" }}
               >
-                We craft AI-powered experiences that turn raw data into stunning
+                We incubate AI products that turn raw data into market-ready
                 outcomes.
               </h1>
               <p
                 className="animate-fade-up text-balance text-lg text-slate-200/80 sm:text-xl"
                 style={{ animationDelay: "0.3s" }}
               >
-                Harding Labs is an AI product studio focused on real-world impact.
-                Our first flagship, StageSnap, transforms real estate photos into
-                beautifully staged listings in minutes.
+                Harding Labs is a product incubation company focused on building
+                and launching our own AI products. StageSnap is our flagship
+                release, transforming real estate photos into beautifully staged
+                listings in about 30 seconds.
               </p>
             </div>
             <div
@@ -143,10 +164,61 @@ export default function Home() {
                 </div>
                 <div className="flex items-center justify-between text-xs text-slate-200/70">
                   <span>Render time</span>
-                  <span className="text-slate-100">2 min 18 sec</span>
+                  <span className="text-slate-100">~30 sec</span>
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="space-y-5">
+            <p className="text-xs uppercase tracking-[0.3em] text-slate-200/60">
+              StageSnap
+            </p>
+            <h2 className="text-3xl font-semibold sm:text-4xl">
+              Real listings, staged in seconds.
+            </h2>
+            <p className="text-base text-slate-200/75">
+              StageSnap is our first product and the clearest expression of our
+              incubation model. We build what we believe in, launch it, and keep
+              compounding.
+            </p>
+          </div>
+          <div className="grid gap-6">
+            {[1, 2].map((index) => (
+              <div
+                key={index}
+                className="rounded-3xl border border-white/10 bg-white/5 p-4"
+              >
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <p className="text-xs uppercase tracking-[0.3em] text-slate-200/60">
+                      Before
+                    </p>
+                    <div className="overflow-hidden rounded-2xl border border-white/10">
+                      <img
+                        src={`/images/stagesnap/before-${index}.png`}
+                        alt={`StageSnap before ${index}`}
+                        className="h-48 w-full object-cover sm:h-56"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-xs uppercase tracking-[0.3em] text-slate-200/60">
+                      After
+                    </p>
+                    <div className="overflow-hidden rounded-2xl border border-white/10">
+                      <img
+                        src={`/images/stagesnap/after-${index}.png`}
+                        alt={`StageSnap after ${index}`}
+                        className="h-48 w-full object-cover sm:h-56"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -156,13 +228,13 @@ export default function Home() {
               About Harding Labs
             </p>
             <h2 className="text-3xl font-semibold sm:text-4xl">
-              A studio where AI meets craftsmanship.
+              An incubator for our own products.
             </h2>
             <p className="text-base text-slate-200/75">
-              We partner with ambitious teams to design, build, and launch AI-first
-              products. Starting with StageSnap, we focus on workflows that
-              benefit from photorealistic generation, rapid iteration, and
-              thoughtful product design.
+              Harding Labs exists to invent, build, and launch our own AI
+              products. StageSnap is the flagship, and we are open to
+              collaboration where there is clear synergy, but we are not a dev
+              studio or agency for hire.
             </p>
             <div className="flex flex-wrap gap-3">
               {stack.map((item) => (
@@ -204,8 +276,8 @@ export default function Home() {
                 Ready to build what comes next?
               </h2>
               <p className="text-sm text-slate-200/70">
-                Explore StageSnap or reach out to collaborate on ambitious AI
-                products.
+                Explore StageSnap or reach out if you see a clear product-aligned
+                collaboration.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
@@ -231,7 +303,7 @@ export default function Home() {
 
         <footer className="flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-200/60 sm:flex-row sm:items-center">
           <span>© 2026 Harding Labs. All rights reserved.</span>
-          <span>AI product studio • Real estate vision • StageSnap</span>
+          <span>Product incubation • StageSnap • AI imaging</span>
         </footer>
       </main>
     </div>
