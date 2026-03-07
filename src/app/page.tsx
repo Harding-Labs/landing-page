@@ -5,14 +5,14 @@ const highlights = [
       "We build and launch our own products that turn real-world workflows into durable, revenue-generating platforms.",
   },
   {
-    title: "Incubation over services",
+    title: "Products over services",
     description:
-      "Harding Labs is an incubator for our ideas, not a services studio for hire. We stay focused on what we own.",
+      "Harding Labs builds its own products, not client work. We stay focused on what we own and ship.",
   },
   {
     title: "StageSnap first",
     description:
-      "StageSnap is our flagship launch: AI staging that turns raw real-estate photos into market-ready listings.",
+      "StageSnap is our first product: AI staging that turns empty real estate photos into beautifully furnished listings.",
   },
 ];
 
@@ -89,24 +89,20 @@ export default function Home() {
               style={{ animationDelay: "0.1s" }}
             >
               <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              Incubating the next wave of AI products
+              Shipping AI products from zero to launch
             </div>
             <div className="space-y-6">
               <h1
                 className="animate-fade-up text-balance text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl"
                 style={{ animationDelay: "0.2s" }}
               >
-                We incubate AI products that turn raw data into market-ready
-                outcomes.
+                We design, build, and ship AI-native applications.
               </h1>
               <p
                 className="animate-fade-up text-balance text-lg text-slate-200/80 sm:text-xl"
                 style={{ animationDelay: "0.3s" }}
               >
-                Harding Labs is a product incubation company focused on building
-                and launching our own AI products. StageSnap is our flagship
-                release, transforming real estate photos into beautifully staged
-                listings in about 30 seconds.
+                Harding Labs is a product studio focused on building and launching AI products — from agent systems to generative imaging. StageSnap is our flagship release, transforming real estate photos into beautifully staged listings in about 30 seconds.
               </p>
             </div>
             <div
@@ -155,11 +151,11 @@ export default function Home() {
                 <div className="grid gap-4">
                   <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/70 to-slate-800/40 p-5">
                     <p className="text-sm text-slate-200/70">Before</p>
-                    <div className="mt-4 h-20 rounded-xl bg-slate-900/80" />
+                    <img src="/images/stagesnap/before-1.png" alt="Before staging" className="mt-4 h-20 w-full rounded-xl object-cover" />
                   </div>
                   <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-sky-500/20 via-cyan-500/10 to-indigo-500/20 p-5">
                     <p className="text-sm text-slate-100/80">After</p>
-                    <div className="mt-4 h-20 rounded-xl bg-gradient-to-r from-sky-400/60 via-cyan-300/40 to-indigo-400/50" />
+                    <img src="/images/stagesnap/after-1.png" alt="After staging" className="mt-4 h-20 w-full rounded-xl object-cover" />
                   </div>
                 </div>
                 <div className="flex items-center justify-between text-xs text-slate-200/70">
@@ -171,70 +167,16 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="space-y-5">
-            <p className="text-xs uppercase tracking-[0.3em] text-slate-200/60">
-              StageSnap
-            </p>
-            <h2 className="text-3xl font-semibold sm:text-4xl">
-              Real listings, staged in seconds.
-            </h2>
-            <p className="text-base text-slate-200/75">
-              StageSnap is our first product and the clearest expression of our
-              incubation model. We build what we believe in, launch it, and keep
-              compounding.
-            </p>
-          </div>
-          <div className="grid gap-6">
-            {[1, 2].map((index) => (
-              <div
-                key={index}
-                className="rounded-3xl border border-white/10 bg-white/5 p-4"
-              >
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <p className="text-xs uppercase tracking-[0.3em] text-slate-200/60">
-                      Before
-                    </p>
-                    <div className="overflow-hidden rounded-2xl border border-white/10">
-                      <img
-                        src={`/images/stagesnap/before-${index}.png`}
-                        alt={`StageSnap before ${index}`}
-                        className="h-48 w-full object-cover sm:h-56"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-xs uppercase tracking-[0.3em] text-slate-200/60">
-                      After
-                    </p>
-                    <div className="overflow-hidden rounded-2xl border border-white/10">
-                      <img
-                        src={`/images/stagesnap/after-${index}.png`}
-                        alt={`StageSnap after ${index}`}
-                        className="h-48 w-full object-cover sm:h-56"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
         <section className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-6">
             <p className="text-xs uppercase tracking-[0.3em] text-slate-200/60">
               About Harding Labs
             </p>
             <h2 className="text-3xl font-semibold sm:text-4xl">
-              An incubator for our own products.
+              A studio built to ship.
             </h2>
             <p className="text-base text-slate-200/75">
-              Harding Labs exists to invent, build, and launch our own AI
-              products. StageSnap is the flagship, and we are open to
-              collaboration where there is clear synergy, but we are not a dev
-              studio or agency for hire.
+              Harding Labs exists to invent, build, and launch AI products. StageSnap is the flagship, and we're open to collaboration where there's clear synergy — but we're not a dev studio or agency for hire.
             </p>
             <div className="flex flex-wrap gap-3">
               {stack.map((item) => (
@@ -303,7 +245,7 @@ export default function Home() {
 
         <footer className="flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-200/60 sm:flex-row sm:items-center">
           <span>© 2026 Harding Labs. All rights reserved.</span>
-          <span>Product incubation • StageSnap • AI imaging</span>
+          <span>Product studio • StageSnap • AI imaging</span>
         </footer>
       </main>
     </div>
