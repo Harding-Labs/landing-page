@@ -42,27 +42,7 @@ export default function Home() {
         {/* Navigation */}
         <nav className="flex items-center justify-between text-sm text-slate-200/80">
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center justify-center rounded-full border border-sky-400/40 bg-sky-400/10 p-1.5 shadow-[0_0_18px_rgba(56,189,248,0.35)]">
-              <svg
-                aria-hidden="true"
-                className="h-4 w-4 text-sky-200"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  d="M12 2.5L20.5 7.5V16.5L12 21.5L3.5 16.5V7.5L12 2.5Z"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                />
-                <path
-                  d="M7.5 9.5L12 12L16.5 9.5M12 12V17"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
+            <img src="/favicon.jpg" alt="Harding Labs" className="h-6 w-6 rounded" />
             <span className="font-semibold tracking-[0.2em] text-slate-200">
               Harding Labs
             </span>

@@ -19,7 +19,10 @@ export const metadata: Metadata = {
   description:
     "Harding Labs builds AI-powered products, starting with StageSnap for real estate photo staging.",
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.png', type: 'image/png', sizes: '32x32' },
+    ],
     apple: '/apple-touch-icon.png',
   },
 };
