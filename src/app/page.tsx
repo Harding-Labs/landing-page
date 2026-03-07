@@ -109,7 +109,7 @@ export default function Home() {
                 className="animate-fade-up text-balance text-lg text-slate-200/80 sm:text-xl"
                 style={{ animationDelay: "0.3s" }}
               >
-                Harding Labs is a product studio focused on building and launching AI products — from agent systems to generative imaging.
+                Harding Labs is a product studio focused on building and launching AI products, from agent systems to generative imaging.
               </p>
             </div>
             <div
@@ -151,7 +151,7 @@ export default function Home() {
               Our Flagship Product
             </p>
             <h2 className="text-3xl font-semibold sm:text-4xl lg:text-5xl">
-              StageSnap — AI Real Estate Staging
+              StageSnap: AI Real Estate Staging
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-200/75">
               Transform empty or cluttered rooms into beautifully staged listings in ~30 seconds.
@@ -208,7 +208,7 @@ export default function Home() {
               A studio built to ship.
             </h2>
             <p className="text-base text-slate-200/75">
-              Harding Labs exists to invent, build, and launch AI products. StageSnap is the flagship, and we're open to collaboration where there's clear synergy — but we're not a dev studio or agency for hire.
+              Harding Labs exists to invent, build, and launch AI products. StageSnap is the flagship, and we're open to collaboration where there's clear synergy, but we're not a dev studio or agency for hire.
             </p>
             <div className="flex flex-wrap gap-3">
               {stack.map((item) => (
