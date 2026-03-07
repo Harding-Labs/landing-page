@@ -1,3 +1,6 @@
+import NetworkAnimation from "@/components/NetworkAnimation";
+import BeforeAfterSlider from "@/components/BeforeAfterSlider";
+
 const highlights = [
   {
     title: "Applied AI, not hype",
@@ -28,6 +31,7 @@ const stack = [
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#05070b] text-white">
+      {/* Ambient background gradients */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-32 top-12 h-80 w-80 rounded-full bg-sky-500/20 blur-3xl" />
         <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl" />
@@ -35,6 +39,7 @@ export default function Home() {
       </div>
 
       <main className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col gap-24 px-6 pb-20 pt-10 sm:px-10">
+        {/* Navigation */}
         <nav className="flex items-center justify-between text-sm text-slate-200/80">
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center justify-center rounded-full border border-sky-400/40 bg-sky-400/10 p-1.5 shadow-[0_0_18px_rgba(56,189,248,0.35)]">
@@ -82,7 +87,9 @@ export default function Home() {
           </div>
         </nav>
 
+        {/* HERO SECTION - Above the fold */}
         <section className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          {/* Left side - Text content */}
           <div className="flex flex-col gap-8">
             <div
               className="animate-fade-up inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-slate-200/80"
@@ -102,7 +109,7 @@ export default function Home() {
                 className="animate-fade-up text-balance text-lg text-slate-200/80 sm:text-xl"
                 style={{ animationDelay: "0.3s" }}
               >
-                Harding Labs is a product studio focused on building and launching AI products — from agent systems to generative imaging. StageSnap is our flagship release, transforming real estate photos into beautifully staged listings in about 30 seconds.
+                Harding Labs is a product studio focused on building and launching AI products — from agent systems to generative imaging.
               </p>
             </div>
             <div
@@ -111,12 +118,10 @@ export default function Home() {
             >
               <a
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-400 via-cyan-400 to-indigo-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 transition hover:-translate-y-0.5 hover:shadow-cyan-500/50"
-                href="https://stagesnap.xyz"
-                target="_blank"
-                rel="noreferrer"
+                href="#stagesnap"
               >
-                Explore StageSnap
-                <span className="transition group-hover:translate-x-1">→</span>
+                See Our Work
+                <span className="transition group-hover:translate-y-1">↓</span>
               </a>
               <a
                 className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/40 hover:bg-white/5"
@@ -129,44 +134,71 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="animate-float absolute -top-10 right-6 h-32 w-32 rounded-3xl bg-cyan-400/20 blur-2xl" />
-            <div className="animate-float-delayed absolute bottom-0 left-0 h-36 w-36 rounded-full bg-indigo-500/30 blur-2xl" />
-            <div className="glass animate-glow relative overflow-hidden rounded-3xl border border-white/10 p-8">
-              <div className="animate-shimmer absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-60" />
-              <div className="relative flex flex-col gap-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm uppercase tracking-[0.3em] text-slate-200/60">
-                      StageSnap
-                    </p>
-                    <h2 className="text-2xl font-semibold">
-                      AI Real Estate Staging
-                    </h2>
-                  </div>
-                  <span className="rounded-full border border-emerald-400/40 bg-emerald-400/10 px-3 py-1 text-xs text-emerald-200">
-                    Live
-                  </span>
-                </div>
-                <div className="grid gap-4">
-                  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/70 to-slate-800/40 p-5">
-                    <p className="text-sm text-slate-200/70">Before</p>
-                    <img src="/images/stagesnap/before-1.png" alt="Before staging" className="mt-4 h-20 w-full rounded-xl object-cover" />
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-sky-500/20 via-cyan-500/10 to-indigo-500/20 p-5">
-                    <p className="text-sm text-slate-100/80">After</p>
-                    <img src="/images/stagesnap/after-1.png" alt="After staging" className="mt-4 h-20 w-full rounded-xl object-cover" />
-                  </div>
-                </div>
-                <div className="flex items-center justify-between text-xs text-slate-200/70">
-                  <span>Render time</span>
-                  <span className="text-slate-100">~30 sec</span>
-                </div>
-              </div>
-            </div>
+          {/* Right side - Network Animation */}
+          <div
+            className="animate-fade-up"
+            style={{ animationDelay: "0.5s" }}
+          >
+            <NetworkAnimation />
           </div>
         </section>
 
+        {/* STAGESNAP SHOWCASE SECTION - Below the fold */}
+        <section id="stagesnap" className="space-y-12 scroll-mt-20">
+          {/* Section header */}
+          <div className="space-y-4 text-center">
+            <p className="text-xs uppercase tracking-[0.3em] text-cyan-400/80">
+              Our Flagship Product
+            </p>
+            <h2 className="text-3xl font-semibold sm:text-4xl lg:text-5xl">
+              StageSnap — AI Real Estate Staging
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-slate-200/75">
+              Transform empty or cluttered rooms into beautifully staged listings in ~30 seconds.
+            </p>
+          </div>
+
+          {/* Before/After Sliders */}
+          <div className="grid gap-8 lg:grid-cols-2">
+            <BeforeAfterSlider
+              beforeImage="/images/stagesnap/before-1.png"
+              afterImage="/images/stagesnap/after-1.png"
+            />
+            <BeforeAfterSlider
+              beforeImage="/images/stagesnap/before-2.png"
+              afterImage="/images/stagesnap/after-2.png"
+            />
+          </div>
+
+          {/* Stats and CTA */}
+          <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-200/70">
+              <div className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                <span>~30 sec render time</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                <span>90% cost savings vs traditional staging</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                <span>Private preview</span>
+              </div>
+            </div>
+            <a
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-400 via-cyan-400 to-indigo-400 px-8 py-4 text-base font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 transition hover:-translate-y-0.5 hover:shadow-cyan-500/50"
+              href="https://stagesnap.xyz"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Explore StageSnap
+              <span className="transition group-hover:translate-x-1">→</span>
+            </a>
+          </div>
+        </section>
+
+        {/* ABOUT SECTION */}
         <section className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-6">
             <p className="text-xs uppercase tracking-[0.3em] text-slate-200/60">
@@ -208,6 +240,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* CONNECT SECTION */}
         <section className="glass rounded-3xl border border-white/10 px-8 py-10">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div className="space-y-3">
@@ -243,6 +276,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* FOOTER */}
         <footer className="flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-200/60 sm:flex-row sm:items-center">
           <span>© 2026 Harding Labs. All rights reserved.</span>
           <span>Product studio • StageSnap • AI imaging</span>
