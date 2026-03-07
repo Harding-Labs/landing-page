@@ -42,7 +42,7 @@ export default function Home() {
         {/* Navigation */}
         <nav className="flex items-center justify-between text-sm text-slate-200/80">
           <div className="flex items-center gap-2">
-            <img src="/favicon.jpg" alt="Harding Labs" className="h-6 w-6 rounded" />
+            <img src="/logo.png" alt="Harding Labs" className="h-6 w-6 rounded" />
             <span className="font-semibold tracking-[0.2em] text-slate-200">
               Harding Labs
             </span>
