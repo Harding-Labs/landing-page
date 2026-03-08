@@ -3,6 +3,7 @@ import { Sora, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import LoadingAnimation from "@/components/LoadingAnimation";
 
+
 const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
