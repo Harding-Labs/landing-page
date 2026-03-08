@@ -11,7 +11,11 @@ interface Node {
   isHighlight: boolean;
 }
 
-export default function NetworkAnimation() {
+interface NetworkAnimationProps {
+  className?: string;
+}
+
+export default function NetworkAnimation({ className = '' }: NetworkAnimationProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const nodesRef = useRef<Node[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -27,7 +31,7 @@ export default function NetworkAnimation() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
     const resizeCanvas = () => {
@@ -162,21 +166,19 @@ export default function NetworkAnimation() {
 
   if (!isClient) {
     return (
-      <div className="flex h-full w-full items-center justify-center">
+      <div className={`flex h-full w-full items-center justify-center ${className}`}>
         <div className="h-64 w-64 animate-pulse rounded-full bg-cyan-400/20 blur-3xl" />
       </div>
     );
   }
 
   return (
-    <div className="relative h-full w-full min-h-[400px] lg:min-h-[500px]">
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-slate-900/40 via-sky-900/20 to-indigo-900/40 backdrop-blur-sm" />
+    <div className={`h-full w-full ${className}`}>
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 h-full w-full"
+        className="h-full w-full"
         style={{ touchAction: 'none' }}
       />
-      <div className="pointer-events-none absolute inset-0 rounded-3xl border border-white/10" />
     </div>
   );
 }
