@@ -82,7 +82,7 @@ export default function Home() {
               style={{ animationDelay: "0.1s" }}
             >
               <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              Shipping AI products from zero to launch
+              AI products from zero to launch
             </div>
             <div className="space-y-4 sm:space-y-6">
               <h1
