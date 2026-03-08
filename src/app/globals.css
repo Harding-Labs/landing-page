@@ -69,6 +69,33 @@ body {
   }
 }
 
+@keyframes loader-fade {
+  0%,
+  78% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes bolt-in {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -94,5 +121,25 @@ body {
     background: rgba(15, 23, 42, 0.6);
     border: 1px solid rgba(148, 163, 184, 0.2);
     backdrop-filter: blur(16px);
+  }
+  .loader-overlay {
+    animation: loader-fade 1.8s ease forwards;
+  }
+  .loader-line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw-line 0.9s ease forwards;
+  }
+  .loader-bolt {
+    opacity: 0;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: bolt-in 0.45s ease forwards;
+    animation-delay: 0.95s;
+  }
+  .loader-node {
+    opacity: 0;
+    animation: bolt-in 0.35s ease forwards;
+    animation-delay: 1.15s;
   }
 }
