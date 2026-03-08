@@ -47,7 +47,7 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
     window.addEventListener('resize', resizeCanvas);
 
     // Initialize nodes
-    const nodeCount = window.innerWidth < 768 ? 30 : 50;
+    const nodeCount = window.innerWidth < 768 ? 15 : 50;
     nodesRef.current = Array.from({ length: nodeCount }, (_, i) => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
@@ -65,7 +65,9 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
       };
     };
 
-    canvas.addEventListener('mousemove', handleMouseMove);
+    if (window.innerWidth >= 768) {
+      canvas.addEventListener('mousemove', handleMouseMove);
+    }
 
     let animationId: number;
 
@@ -176,7 +178,7 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
     <div className={`h-full w-full ${className}`}>
       <canvas
         ref={canvasRef}
-        className="h-full w-full"
+        className="h-full w-full pointer-events-none"
         style={{ touchAction: 'none' }}
       />
     </div>

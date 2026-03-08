@@ -42,7 +42,7 @@ export default function Home() {
         {/* HERO VIEWPORT - Above the fold */}
         <div className="relative flex min-h-[100dvh] flex-col">
           {/* Full-screen network animation background */}
-          <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 z-0 pointer-events-none">
             <NetworkAnimation />
           </div>
 
@@ -79,7 +79,7 @@ export default function Home() {
 
           {/* HERO SECTION - Vertically centered */}
           <section className="relative z-10 flex flex-1 items-center justify-center">
-            <div className="max-w-3xl space-y-8 px-6 text-center">
+            <div className="max-w-3xl space-y-4 px-6 text-center sm:space-y-8">
               <div
                 className="animate-fade-up mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-slate-200/80"
                 style={{ animationDelay: "0.1s" }}
@@ -87,15 +87,15 @@ export default function Home() {
                 <span className="h-2 w-2 rounded-full bg-emerald-400" />
                 Shipping AI products from zero to launch
               </div>
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <h1
-                  className="animate-fade-up text-balance text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl"
+                  className="animate-fade-up text-balance text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-6xl"
                   style={{ animationDelay: "0.2s" }}
                 >
                   We design, build, and ship AI-native applications.
                 </h1>
                 <p
-                  className="animate-fade-up text-balance text-lg text-slate-200/80 sm:text-xl"
+                  className="animate-fade-up text-balance text-base text-slate-200/80 sm:text-lg lg:text-xl"
                   style={{ animationDelay: "0.3s" }}
                 >
                   Harding Labs is a product studio focused on building and launching AI products, from agent systems to generative imaging.
@@ -125,7 +125,7 @@ export default function Home() {
           </section>
 
           {/* Bouncing down arrow */}
-          <div className="relative z-10 flex justify-center pb-8">
+          <div className="relative z-10 flex justify-center pb-4 sm:pb-8">
             <a
               href="#stagesnap"
               className="animate-bounce text-slate-200/60 transition hover:text-slate-200"
