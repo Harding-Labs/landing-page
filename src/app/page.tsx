@@ -41,7 +41,7 @@ export default function Home() {
       {/* HERO - full width, outside main */}
       <div className="relative flex min-h-[100dvh] flex-col">
         {/* Full-screen network animation - truly edge to edge */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <NetworkAnimation />
         </div>
         <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#05070b]/60 via-transparent to-[#05070b]/60 pointer-events-none" />
