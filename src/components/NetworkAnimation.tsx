@@ -18,7 +18,7 @@ interface NetworkAnimationProps {
 export default function NetworkAnimation({ className = '' }: NetworkAnimationProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const nodesRef = useRef<Node[]>([]);
-  const mouseRef = useRef({ x: 0, y: 0 });
+  const mouseRef = useRef({ x: 0, y: 0, active: false });
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
     window.addEventListener('resize', resizeCanvas);
 
     // Initialize nodes
-    const nodeCount = window.innerWidth < 768 ? 25 : 80;
+    const nodeCount = window.innerWidth < 768 ? 40 : 120;
     nodesRef.current = Array.from({ length: nodeCount }, (_, i) => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
@@ -62,11 +62,17 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
       mouseRef.current = {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
+        active: true,
       };
+    };
+
+    const handleMouseLeave = () => {
+      mouseRef.current.active = false;
     };
 
     if (window.innerWidth >= 768) {
       canvas.addEventListener('mousemove', handleMouseMove);
+      canvas.addEventListener('mouseleave', handleMouseLeave);
     }
 
     let animationId: number;
@@ -79,7 +85,13 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
       const nodes = nodesRef.current;
       const mouse = mouseRef.current;
 
-      // Update and draw nodes
+      const maxConnectionDistance = 180;
+      const maxConnectionDistanceSq = maxConnectionDistance * maxConnectionDistance;
+      const mouseRadius = 160;
+      const mouseRadiusSq = mouseRadius * mouseRadius;
+      const mouseInfluence: number[] = new Array(nodes.length).fill(0);
+
+      // Update nodes and compute mouse influence
       nodes.forEach((node, i) => {
         // Update position
         node.x += node.vx;
@@ -93,39 +105,55 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
         node.x = Math.max(0, Math.min(canvas.width, node.x));
         node.y = Math.max(0, Math.min(canvas.height, node.y));
 
-        // Mouse interaction - push away from cursor
-        const dx = node.x - mouse.x;
-        const dy = node.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const maxDistance = 150;
+        // Mouse interaction - attract toward cursor
+        if (mouse.active) {
+          const dx = mouse.x - node.x;
+          const dy = mouse.y - node.y;
+          const distSq = dx * dx + dy * dy;
 
-        if (dist < maxDistance && dist > 0) {
-          const force = (maxDistance - dist) / maxDistance;
-          node.x += (dx / dist) * force * 2;
-          node.y += (dy / dist) * force * 2;
+          if (distSq < mouseRadiusSq && distSq > 0) {
+            const dist = Math.sqrt(distSq);
+            const force = (mouseRadius - dist) / mouseRadius;
+            mouseInfluence[i] = force;
+            node.vx += (dx / dist) * force * 0.02;
+            node.vy += (dy / dist) * force * 0.02;
+          }
         }
 
-        // Draw connections
+        const speed = Math.hypot(node.vx, node.vy);
+        if (speed > 0.7) {
+          node.vx = (node.vx / speed) * 0.7;
+          node.vy = (node.vy / speed) * 0.7;
+        }
+      });
+
+      // Draw connections
+      nodes.forEach((node, i) => {
         nodes.forEach((otherNode, j) => {
           if (j <= i) return;
 
           const dx = node.x - otherNode.x;
           const dy = node.y - otherNode.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          const maxConnectionDistance = 160;
+          const distanceSq = dx * dx + dy * dy;
 
-          if (distance < maxConnectionDistance) {
-            const opacity = (1 - distance / maxConnectionDistance) * 0.4;
-            ctx.strokeStyle = `rgba(34, 211, 238, ${opacity})`;
-            ctx.lineWidth = 0.5;
+          if (distanceSq < maxConnectionDistanceSq) {
+            const distance = Math.sqrt(distanceSq);
+            const baseOpacity = (1 - distance / maxConnectionDistance) * 0.4;
+            const glowBoost = mouse.active
+              ? Math.min(0.25, (mouseInfluence[i] + mouseInfluence[j]) * 0.35)
+              : 0;
+            ctx.strokeStyle = `rgba(34, 211, 238, ${baseOpacity + glowBoost})`;
+            ctx.lineWidth = 0.5 + glowBoost * 1.5;
             ctx.beginPath();
             ctx.moveTo(node.x, node.y);
             ctx.lineTo(otherNode.x, otherNode.y);
             ctx.stroke();
           }
         });
+      });
 
-        // Draw node
+      // Draw nodes
+      nodes.forEach((node) => {
         const gradient = ctx.createRadialGradient(
           node.x,
           node.y,
@@ -154,6 +182,24 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
         ctx.fill();
       });
 
+      if (mouse.active) {
+        const haloGradient = ctx.createRadialGradient(
+          mouse.x,
+          mouse.y,
+          0,
+          mouse.x,
+          mouse.y,
+          mouseRadius
+        );
+        haloGradient.addColorStop(0, 'rgba(34, 211, 238, 0.18)');
+        haloGradient.addColorStop(0.6, 'rgba(34, 211, 238, 0.08)');
+        haloGradient.addColorStop(1, 'rgba(34, 211, 238, 0)');
+        ctx.fillStyle = haloGradient;
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, mouseRadius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
       animationId = requestAnimationFrame(animate);
     };
 
@@ -162,6 +208,7 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationId);
     };
   }, [isClient]);
@@ -178,7 +225,7 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
     <div className={`h-full w-full ${className}`}>
       <canvas
         ref={canvasRef}
-        className="h-full w-full pointer-events-none"
+        className="h-full w-full"
         style={{ touchAction: 'none' }}
       />
     </div>
