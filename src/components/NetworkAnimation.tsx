@@ -47,7 +47,7 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
     window.addEventListener('resize', resizeCanvas);
 
     // Initialize nodes
-    const nodeCount = window.innerWidth < 768 ? 15 : 50;
+    const nodeCount = window.innerWidth < 768 ? 25 : 80;
     nodesRef.current = Array.from({ length: nodeCount }, (_, i) => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
@@ -112,7 +112,7 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
           const dx = node.x - otherNode.x;
           const dy = node.y - otherNode.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          const maxConnectionDistance = 120;
+          const maxConnectionDistance = 160;
 
           if (distance < maxConnectionDistance) {
             const opacity = (1 - distance / maxConnectionDistance) * 0.4;

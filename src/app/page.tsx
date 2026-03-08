@@ -38,116 +38,115 @@ export default function Home() {
         <div className="absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl" />
       </div>
 
-      <main className="relative z-10 mx-auto flex max-w-6xl flex-col px-6 pb-20 sm:px-10">
-        {/* HERO VIEWPORT - Above the fold */}
-        <div className="relative flex min-h-[100dvh] flex-col">
-          {/* Full-screen network animation background */}
-          <div className="absolute inset-0 z-0 pointer-events-none">
-            <NetworkAnimation />
+      {/* HERO - full width, outside main */}
+      <div className="relative flex min-h-[100dvh] flex-col">
+        {/* Full-screen network animation - truly edge to edge */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <NetworkAnimation />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#05070b]/60 via-transparent to-[#05070b]/60 pointer-events-none" />
+        
+        {/* Navigation - max-width wrapper */}
+        <nav className="relative z-10 mx-auto w-full max-w-6xl px-6 sm:px-10 flex items-center justify-between py-10 text-sm text-slate-200/80">
+          <div className="flex items-center gap-2">
+            <img src="/logo.png" alt="Harding Labs" className="h-6 w-6 rounded" />
+            <span className="font-semibold tracking-[0.2em] text-slate-200">
+              Harding Labs
+            </span>
           </div>
+          <div className="hidden items-center gap-6 sm:flex">
+            <a
+              className="transition hover:text-white"
+              href="https://stagesnap.xyz"
+              target="_blank"
+              rel="noreferrer"
+            >
+              StageSnap
+            </a>
+            <a
+              className="transition hover:text-white"
+              href="https://davin.io"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Davin
+            </a>
+          </div>
+        </nav>
 
-          {/* Subtle overlay for text readability */}
-          <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#05070b]/60 via-transparent to-[#05070b]/60" />
-
-          {/* Navigation */}
-          <nav className="relative z-10 flex items-center justify-between py-10 text-sm text-slate-200/80">
-            <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="Harding Labs" className="h-6 w-6 rounded" />
-              <span className="font-semibold tracking-[0.2em] text-slate-200">
-                Harding Labs
-              </span>
+        {/* HERO SECTION - Vertically centered */}
+        <section className="relative z-10 flex flex-1 items-center justify-center px-6">
+          <div className="max-w-3xl space-y-4 text-center sm:space-y-8">
+            <div
+              className="animate-fade-up mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-slate-200/80"
+              style={{ animationDelay: "0.1s" }}
+            >
+              <span className="h-2 w-2 rounded-full bg-emerald-400" />
+              Shipping AI products from zero to launch
             </div>
-            <div className="hidden items-center gap-6 sm:flex">
-              <a
-                className="transition hover:text-white"
-                href="https://stagesnap.xyz"
-                target="_blank"
-                rel="noreferrer"
+            <div className="space-y-4 sm:space-y-6">
+              <h1
+                className="animate-fade-up text-balance text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-6xl"
+                style={{ animationDelay: "0.2s" }}
               >
-                StageSnap
+                We design, build, and ship AI-native applications.
+              </h1>
+              <p
+                className="animate-fade-up text-balance text-base text-slate-200/80 sm:text-lg lg:text-xl"
+                style={{ animationDelay: "0.3s" }}
+              >
+                Harding Labs is a product studio focused on building and launching AI products, from agent systems to generative imaging.
+              </p>
+            </div>
+            <div
+              className="animate-fade-up flex flex-col justify-center gap-4 sm:flex-row"
+              style={{ animationDelay: "0.4s" }}
+            >
+              <a
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-400 via-cyan-400 to-indigo-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 transition hover:-translate-y-0.5 hover:shadow-cyan-500/50"
+                href="#stagesnap"
+              >
+                See Our Work
+                <span className="transition group-hover:translate-y-1">↓</span>
               </a>
               <a
-                className="transition hover:text-white"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/40 hover:bg-white/5"
                 href="https://davin.io"
                 target="_blank"
                 rel="noreferrer"
               >
-                Davin
+                Meet Davin
               </a>
             </div>
-          </nav>
-
-          {/* HERO SECTION - Vertically centered */}
-          <section className="relative z-10 flex flex-1 items-center justify-center">
-            <div className="max-w-3xl space-y-4 px-6 text-center sm:space-y-8">
-              <div
-                className="animate-fade-up mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-slate-200/80"
-                style={{ animationDelay: "0.1s" }}
-              >
-                <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                Shipping AI products from zero to launch
-              </div>
-              <div className="space-y-4 sm:space-y-6">
-                <h1
-                  className="animate-fade-up text-balance text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-6xl"
-                  style={{ animationDelay: "0.2s" }}
-                >
-                  We design, build, and ship AI-native applications.
-                </h1>
-                <p
-                  className="animate-fade-up text-balance text-base text-slate-200/80 sm:text-lg lg:text-xl"
-                  style={{ animationDelay: "0.3s" }}
-                >
-                  Harding Labs is a product studio focused on building and launching AI products, from agent systems to generative imaging.
-                </p>
-              </div>
-              <div
-                className="animate-fade-up flex flex-col justify-center gap-4 sm:flex-row"
-                style={{ animationDelay: "0.4s" }}
-              >
-                <a
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-400 via-cyan-400 to-indigo-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 transition hover:-translate-y-0.5 hover:shadow-cyan-500/50"
-                  href="#stagesnap"
-                >
-                  See Our Work
-                  <span className="transition group-hover:translate-y-1">↓</span>
-                </a>
-                <a
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/40 hover:bg-white/5"
-                  href="https://davin.io"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Meet Davin
-                </a>
-              </div>
-            </div>
-          </section>
-
-          {/* Bouncing down arrow */}
-          <div className="relative z-10 flex justify-center pb-4 sm:pb-8">
-            <a
-              href="#stagesnap"
-              className="animate-bounce text-slate-200/60 transition hover:text-slate-200"
-              aria-label="Scroll to StageSnap section"
-            >
-              <svg
-                className="h-8 w-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </a>
           </div>
-        </div>
+        </section>
 
+        {/* Bouncing down arrow */}
+        <div className="relative z-10 flex justify-center pb-4 sm:pb-8">
+          <a
+            href="#stagesnap"
+            className="animate-bounce text-slate-200/60 transition hover:text-slate-200"
+            aria-label="Scroll to StageSnap section"
+          >
+            <svg
+              className="h-8 w-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      {/* Rest of page in main with max-width */}
+      <main className="relative z-10 mx-auto flex max-w-6xl flex-col px-6 pb-20 sm:px-10">
         {/* STAGESNAP SHOWCASE SECTION - Below the fold */}
         <section id="stagesnap" className="mt-24 space-y-12 scroll-mt-20">
           {/* Section header */}
