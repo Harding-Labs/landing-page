@@ -45,7 +45,7 @@ export default function LoadingAnimation() {
       @keyframes hl-node{0%,60%{opacity:0}100%{opacity:1}}
       @keyframes hl-bolt{0%,30%{opacity:0}100%{opacity:1}}
       @keyframes hl-glow{0%,60%{transform:scale(1);filter:drop-shadow(0 0 16px rgba(45,212,191,.75))}72%{transform:scale(1.05);filter:drop-shadow(0 0 28px rgba(45,212,191,.95))}85%,100%{transform:scale(1);filter:drop-shadow(0 0 16px rgba(45,212,191,.75))}}
-      @keyframes hl-fade{0%,70%{opacity:1}100%{opacity:0;pointer-events:none}}
+      @keyframes hl-fade{0%,80%{opacity:1}100%{opacity:0;pointer-events:none}}
     </style>
     <script>
       (function(){
@@ -54,8 +54,8 @@ export default function LoadingAnimation() {
         if(!el)return;
         if(sessionStorage.getItem(k)==='1'){el.remove();return;}
         sessionStorage.setItem(k,'1');
-        el.style.animation='hl-fade 1.9s ease forwards';
-        setTimeout(function(){el.remove();},2000);
+        el.style.animation='hl-fade 3s ease forwards';
+        setTimeout(function(){el.remove();},3100);
       })();
     </script>
   `;
