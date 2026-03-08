@@ -47,14 +47,14 @@ export default function Home() {
         <div className="absolute inset-0 z-[1] bg-gradient-to-b from-[#05070b]/60 via-transparent to-[#05070b]/60 pointer-events-none" />
         
         {/* Navigation - max-width wrapper */}
-        <nav className="relative z-10 mx-auto w-full max-w-6xl px-6 sm:px-10 flex items-center justify-between py-10 text-sm text-slate-200/80">
-          <div className="flex items-center gap-2">
+        <nav className="pointer-events-none relative z-10 mx-auto w-full max-w-6xl px-6 sm:px-10 flex items-center justify-between py-10 text-sm text-slate-200/80">
+          <div className="pointer-events-auto flex items-center gap-2">
             <img src="/logo.png" alt="Harding Labs" className="h-6 w-6 rounded" />
             <span className="font-semibold tracking-[0.2em] text-slate-200">
               Harding Labs
             </span>
           </div>
-          <div className="hidden items-center gap-6 sm:flex">
+          <div className="pointer-events-auto hidden items-center gap-6 sm:flex">
             <a
               className="transition hover:text-white"
               href="https://stagesnap.xyz"
@@ -75,8 +75,8 @@ export default function Home() {
         </nav>
 
         {/* HERO SECTION - Vertically centered */}
-        <section className="relative z-10 flex flex-1 items-center justify-center px-6">
-          <div className="max-w-3xl space-y-4 text-center sm:space-y-8">
+        <section className="pointer-events-none relative z-10 flex flex-1 items-center justify-center px-6">
+          <div className="pointer-events-auto max-w-3xl space-y-4 text-center sm:space-y-8">
             <div
               className="animate-fade-up mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-slate-200/80"
               style={{ animationDelay: "0.1s" }}
@@ -122,10 +122,10 @@ export default function Home() {
         </section>
 
         {/* Bouncing down arrow */}
-        <div className="relative z-10 flex justify-center pb-4 sm:pb-8">
+        <div className="pointer-events-none relative z-10 flex justify-center pb-4 sm:pb-8">
           <a
             href="#stagesnap"
-            className="animate-bounce text-slate-200/60 transition hover:text-slate-200"
+            className="pointer-events-auto animate-bounce text-slate-200/60 transition hover:text-slate-200"
             aria-label="Scroll to StageSnap section"
           >
             <svg
