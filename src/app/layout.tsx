@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Harding Labs — AI Product Studio",
   description:
-    "Harding Labs builds AI-powered products, starting with StageSnap for real estate photo staging.",
+    "Harding Labs is an AI product studio building StageSnap, a real estate photo staging tool for listing visuals.",
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
