@@ -176,7 +176,7 @@ export default function Home() {
               A studio built to ship.
             </h2>
             <p className="text-base text-slate-200/75">
-              Harding Labs exists to invent, build, and launch AI products. StageSnap is the flagship, and we're open to collaboration where there's clear synergy — but we're not a dev studio or agency for hire.
+              Harding Labs exists to invent, build, and launch AI products. StageSnap is the flagship, and we&apos;re open to collaboration where there&apos;s clear synergy — but we&apos;re not a dev studio or agency for hire.
             </p>
             <div className="flex flex-wrap gap-3">
               {stack.map((item) => (
