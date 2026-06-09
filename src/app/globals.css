@@ -65,6 +65,38 @@ body {
   }
 }
 
+@keyframes opening-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes opening-node-reveal {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes opening-pulse {
+  0%,
+  100% {
+    opacity: 0.42;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.88;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes opening-label {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -90,5 +122,158 @@ body {
     background: rgba(15, 23, 42, 0.6);
     border: 1px solid rgba(148, 163, 184, 0.2);
     backdrop-filter: blur(16px);
+  }
+}
+
+.opening-prototype {
+  position: relative;
+  min-height: clamp(210px, 42vw, 300px);
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  background:
+    radial-gradient(circle at 50% 44%, rgba(34, 211, 238, 0.16), transparent 34%),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.82), rgba(8, 47, 73, 0.42));
+}
+
+.opening-prototype__svg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 7 / 6;
+}
+
+.opening-prototype__links path,
+.opening-prototype__rings circle,
+.opening-prototype__mark path {
+  fill: none;
+  stroke: url("#opening-line");
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 520;
+  stroke-dashoffset: 520;
+  animation: opening-draw 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.opening-prototype__links path {
+  opacity: 0.58;
+  animation-delay: 0.18s;
+}
+
+.opening-prototype__rings circle {
+  opacity: 0.22;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation:
+    opening-draw 1.25s ease forwards 0.08s,
+    opening-pulse 5s ease-in-out infinite 1.4s;
+}
+
+.opening-prototype__mark path {
+  stroke-width: 4;
+  filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.35));
+}
+
+.opening-prototype__mark path:nth-child(2),
+.opening-prototype__mark path:nth-child(3),
+.opening-prototype__mark path:nth-child(4) {
+  animation-delay: 0.28s;
+}
+
+.opening-prototype__node {
+  opacity: 0;
+  transform: scale(0.72);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: opening-node-reveal 0.42s ease forwards;
+}
+
+.opening-prototype__node--one {
+  animation-delay: 0.58s;
+}
+
+.opening-prototype__node--two {
+  animation-delay: 0.72s;
+}
+
+.opening-prototype__node--three {
+  animation-delay: 0.86s;
+}
+
+.opening-prototype__node--four {
+  animation-delay: 1s;
+}
+
+.opening-prototype__node circle {
+  fill: rgba(15, 23, 42, 0.92);
+  stroke: rgba(125, 211, 252, 0.82);
+  stroke-width: 2;
+}
+
+.opening-prototype__node text {
+  fill: #e0f2fe;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-anchor: middle;
+}
+
+.opening-prototype__core {
+  fill: url("#opening-core");
+  filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.85));
+  opacity: 0;
+  transform: scale(0.5);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation:
+    opening-node-reveal 0.34s ease forwards 0.45s,
+    opening-pulse 3.8s ease-in-out infinite 1.2s;
+}
+
+.opening-prototype__label {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: grid;
+  gap: 0.2rem;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: opening-label 0.5s ease forwards 1.05s;
+}
+
+.opening-prototype__label span {
+  color: rgba(226, 232, 240, 0.66);
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.opening-prototype__label strong {
+  color: #f8fafc;
+  font-size: clamp(0.95rem, 2.4vw, 1.25rem);
+  font-weight: 650;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .opening-prototype__links path,
+  .opening-prototype__rings circle,
+  .opening-prototype__mark path {
+    stroke-dashoffset: 0;
+  }
+
+  .opening-prototype__node,
+  .opening-prototype__core,
+  .opening-prototype__label {
+    opacity: 1;
+    transform: none;
   }
 }

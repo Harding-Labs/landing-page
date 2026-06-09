@@ -25,6 +25,77 @@ const stack = [
   "Human-Centered UX",
 ];
 
+function ProductStudioOpening() {
+  return (
+    <div
+      className="opening-prototype"
+      aria-label="Harding Labs product studio opening animation prototype"
+    >
+      <svg
+        className="opening-prototype__svg"
+        viewBox="0 0 420 360"
+        role="img"
+        aria-labelledby="opening-title opening-desc"
+      >
+        <title id="opening-title">Harding Labs product nodes resolving</title>
+        <desc id="opening-desc">
+          A lightweight SVG animation showing Harding Labs resolving into
+          connected StageSnap and product nodes.
+        </desc>
+        <defs>
+          <linearGradient id="opening-line" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stopColor="#7dd3fc" />
+            <stop offset="52%" stopColor="#22d3ee" />
+            <stop offset="100%" stopColor="#a5b4fc" />
+          </linearGradient>
+          <radialGradient id="opening-core" cx="50%" cy="50%" r="58%">
+            <stop offset="0%" stopColor="#e0f2fe" />
+            <stop offset="52%" stopColor="#38bdf8" />
+            <stop offset="100%" stopColor="#2563eb" />
+          </radialGradient>
+        </defs>
+        <g className="opening-prototype__links">
+          <path d="M210 180 L106 111" />
+          <path d="M210 180 L318 101" />
+          <path d="M210 180 L327 248" />
+          <path d="M210 180 L96 254" />
+        </g>
+        <g className="opening-prototype__rings">
+          <circle cx="210" cy="180" r="112" />
+          <circle cx="210" cy="180" r="72" />
+        </g>
+        <g className="opening-prototype__node opening-prototype__node--one">
+          <circle cx="106" cy="111" r="23" />
+          <text x="106" y="116">AI</text>
+        </g>
+        <g className="opening-prototype__node opening-prototype__node--two">
+          <circle cx="318" cy="101" r="23" />
+          <text x="318" y="106">UX</text>
+        </g>
+        <g className="opening-prototype__node opening-prototype__node--three">
+          <circle cx="327" cy="248" r="28" />
+          <text x="327" y="253">SS</text>
+        </g>
+        <g className="opening-prototype__node opening-prototype__node--four">
+          <circle cx="96" cy="254" r="23" />
+          <text x="96" y="259">GO</text>
+        </g>
+        <g className="opening-prototype__mark">
+          <path d="M210 106 L274 143 V217 L210 254 L146 217 V143 Z" />
+          <path d="M174 154 L210 175 L246 154" />
+          <path d="M210 175 V221" />
+          <path d="M174 206 L210 227 L246 206" />
+        </g>
+        <circle className="opening-prototype__core" cx="210" cy="180" r="10" />
+      </svg>
+      <div className="opening-prototype__label">
+        <span>Harding Labs</span>
+        <strong>StageSnap origin system</strong>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#05070b] text-white">
@@ -135,6 +206,7 @@ export default function Home() {
             <div className="glass animate-glow relative overflow-hidden rounded-3xl border border-white/10 p-8">
               <div className="animate-shimmer absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-60" />
               <div className="relative flex flex-col gap-6">
+                <ProductStudioOpening />
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm uppercase tracking-[0.3em] text-slate-200/60">
