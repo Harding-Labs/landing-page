@@ -3,7 +3,6 @@ import { Sora, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import LoadingAnimation from "@/components/LoadingAnimation";
 
-
 const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
@@ -19,7 +18,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Harding Labs | AI Product Studio",
   description:
-    "Harding Labs builds AI-powered products, starting with StageSnap for real estate photo staging.",
+    "Harding Labs builds and launches AI-native apps. StageSnap stages real estate photos; Vibecation turns Instagram into Travel DNA and trip plans.",
   icons: {
     icon: [
       { url: '/favicon.ico?v=2', sizes: 'any' },
