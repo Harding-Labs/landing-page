@@ -19,13 +19,6 @@ export const metadata: Metadata = {
   title: "Harding Labs | AI Product Studio",
   description:
     "Harding Labs builds and launches AI-native apps. StageSnap stages real estate photos; Vibecation turns Instagram into Travel DNA and trip plans.",
-  icons: {
-    icon: [
-      { url: '/favicon.ico?v=2', sizes: 'any' },
-      { url: '/favicon.png?v=2', type: 'image/png', sizes: '32x32' },
-    ],
-    apple: '/apple-touch-icon.png',
-  },
 };
 
 export default function RootLayout({
