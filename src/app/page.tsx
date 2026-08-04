@@ -1,3 +1,17 @@
+type ProductVisualKind = "stagesnap" | "vibecation";
+
+type Product = {
+  name: string;
+  href: string;
+  domain: string;
+  eyebrow: string;
+  teaser: string;
+  description: string;
+  metricLabel: string;
+  metricValue: string;
+  visual: ProductVisualKind;
+};
+
 const highlights = [
   {
     title: "Applied AI, not hype",
@@ -10,15 +24,43 @@ const highlights = [
       "Harding Labs builds its own products, not client work. We stay focused on what we own and ship.",
   },
   {
-    title: "StageSnap first",
+    title: "Two products live",
     description:
-      "StageSnap is our first product: AI staging that turns empty real estate photos into beautifully furnished listings.",
+      "StageSnap stages real estate photos with generative AI. Vibecation turns an Instagram grid into Travel DNA and a day-by-day trip plan.",
+  },
+];
+
+const products: Product[] = [
+  {
+    name: "StageSnap",
+    href: "https://stagesnap.xyz",
+    domain: "stagesnap.xyz",
+    eyebrow: "AI Real Estate Staging",
+    teaser: "AI staging in ~30 sec",
+    description:
+      "AI-powered real estate photo staging that transforms empty or cluttered rooms into beautifully furnished listings in ~30 seconds.",
+    metricLabel: "Render time",
+    metricValue: "~30 sec",
+    visual: "stagesnap",
+  },
+  {
+    name: "Vibecation",
+    href: "https://vibecation.xyz",
+    domain: "vibecation.xyz",
+    eyebrow: "Instagram → Travel DNA",
+    teaser: "Travel DNA from your @",
+    description:
+      "Drop an Instagram @ and get your Travel DNA in ~30 seconds: traveler archetype, three matched destinations, and a $7 day-by-day trip you can refine with Polo.",
+    metricLabel: "Trip unlock",
+    metricValue: "$7 / trip",
+    visual: "vibecation",
   },
 ];
 
 const stack = [
   "Computer Vision",
   "Generative Imaging",
+  "Agentic Systems",
   "Product Strategy",
   "Launch Systems",
   "Workflow Automation",
@@ -29,7 +71,7 @@ function ProductStudioOpening() {
   return (
     <div
       className="opening-prototype"
-      aria-label="Harding Labs product studio opening animation prototype"
+      aria-label="Harding Labs product studio opening animation"
     >
       <svg
         className="opening-prototype__svg"
@@ -40,7 +82,7 @@ function ProductStudioOpening() {
         <title id="opening-title">Harding Labs product nodes resolving</title>
         <desc id="opening-desc">
           A lightweight SVG animation showing Harding Labs resolving into
-          connected StageSnap and product nodes.
+          connected StageSnap, Vibecation, and product nodes.
         </desc>
         <defs>
           <linearGradient id="opening-line" x1="0" x2="1" y1="0" y2="1">
@@ -66,19 +108,27 @@ function ProductStudioOpening() {
         </g>
         <g className="opening-prototype__node opening-prototype__node--one">
           <circle cx="106" cy="111" r="23" />
-          <text x="106" y="116">AI</text>
+          <text x="106" y="116">
+            AI
+          </text>
         </g>
         <g className="opening-prototype__node opening-prototype__node--two">
           <circle cx="318" cy="101" r="23" />
-          <text x="318" y="106">UX</text>
+          <text x="318" y="106">
+            UX
+          </text>
         </g>
         <g className="opening-prototype__node opening-prototype__node--three">
           <circle cx="327" cy="248" r="28" />
-          <text x="327" y="253">SS</text>
+          <text x="327" y="253">
+            SS
+          </text>
         </g>
         <g className="opening-prototype__node opening-prototype__node--four">
           <circle cx="96" cy="254" r="23" />
-          <text x="96" y="259">GO</text>
+          <text x="96" y="259">
+            VC
+          </text>
         </g>
         <g className="opening-prototype__mark">
           <path d="M210 106 L274 143 V217 L210 254 L146 217 V143 Z" />
@@ -90,10 +140,50 @@ function ProductStudioOpening() {
       </svg>
       <div className="opening-prototype__label">
         <span>Harding Labs</span>
-        <strong>StageSnap origin system</strong>
+        <strong>StageSnap · Vibecation</strong>
       </div>
     </div>
   );
+}
+
+function ProductVisual({ visual }: { visual: ProductVisualKind }) {
+  switch (visual) {
+    case "stagesnap":
+      return (
+        <div className="grid gap-3">
+          <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/70 to-slate-800/40 p-4">
+            <p className="text-xs text-slate-200/70">Before</p>
+            <img
+              src="/images/stagesnap/before-1.png"
+              alt="Empty room before StageSnap staging"
+              className="mt-3 h-24 w-full rounded-xl object-cover"
+            />
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-sky-500/20 via-cyan-500/10 to-indigo-500/20 p-4">
+            <p className="text-xs text-slate-100/80">After</p>
+            <img
+              src="/images/stagesnap/after-1.png"
+              alt="Furnished room after StageSnap staging"
+              className="mt-3 h-24 w-full rounded-xl object-cover"
+            />
+          </div>
+        </div>
+      );
+    case "vibecation":
+      return (
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-fuchsia-500/10 via-rose-500/5 to-orange-400/10 p-3">
+          <img
+            src="/images/vibecation/landing.png"
+            alt="Vibecation Travel DNA share card with matched destinations"
+            className="h-56 w-full rounded-xl object-cover object-top sm:h-64"
+          />
+        </div>
+      );
+    default: {
+      const _exhaustive: never = visual;
+      return _exhaustive;
+    }
+  }
 }
 
 export default function Home() {
@@ -144,6 +234,14 @@ export default function Home() {
             </a>
             <a
               className="transition hover:text-white"
+              href="https://vibecation.xyz"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Vibecation
+            </a>
+            <a
+              className="transition hover:text-white"
               href="https://davin.io"
               target="_blank"
               rel="noreferrer"
@@ -173,7 +271,10 @@ export default function Home() {
                 className="animate-fade-up text-balance text-lg text-slate-200/80 sm:text-xl"
                 style={{ animationDelay: "0.3s" }}
               >
-                Harding Labs is a product studio focused on building and launching AI products — from agent systems to generative imaging. StageSnap is our flagship release, transforming real estate photos into beautifully staged listings in about 30 seconds.
+                Harding Labs is a product studio focused on building and
+                launching AI-native applications. Products include StageSnap, AI
+                real estate photo staging, and Vibecation, Instagram-to-Travel-DNA
+                trip planning at vibecation.xyz.
               </p>
             </div>
             <div
@@ -182,20 +283,20 @@ export default function Home() {
             >
               <a
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-400 via-cyan-400 to-indigo-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 transition hover:-translate-y-0.5 hover:shadow-cyan-500/50"
+                href="https://vibecation.xyz"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Explore Vibecation
+                <span className="transition group-hover:translate-x-1">→</span>
+              </a>
+              <a
+                className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/40 hover:bg-white/5"
                 href="https://stagesnap.xyz"
                 target="_blank"
                 rel="noreferrer"
               >
                 Explore StageSnap
-                <span className="transition group-hover:translate-x-1">→</span>
-              </a>
-              <a
-                className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/40 hover:bg-white/5"
-                href="https://davin.io"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Meet Davin
               </a>
             </div>
           </div>
@@ -207,35 +308,91 @@ export default function Home() {
               <div className="animate-shimmer absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-60" />
               <div className="relative flex flex-col gap-6">
                 <ProductStudioOpening />
-                <div className="flex items-center justify-between">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {products.map((product) => (
+                    <a
+                      key={product.name}
+                      href={product.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-white/30 hover:bg-white/10"
+                    >
+                      <p className="text-xs uppercase tracking-[0.2em] text-slate-200/60">
+                        {product.name}
+                      </p>
+                      <p className="mt-2 text-sm text-slate-100">
+                        {product.teaser}
+                      </p>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="space-y-10">
+          <div className="max-w-2xl space-y-4">
+            <p className="text-xs uppercase tracking-[0.3em] text-slate-200/60">
+              Products
+            </p>
+            <h2 className="text-3xl font-semibold sm:text-4xl">
+              Live products from the studio.
+            </h2>
+            <p className="text-base text-slate-200/75">
+              StageSnap for listing visuals. Vibecation for taste-matched travel
+              plans. Building from zero to paying customers.
+            </p>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            {products.map((product, index) => (
+              <article
+                key={product.name}
+                className="glass animate-fade-up flex flex-col gap-6 rounded-3xl border border-white/10 p-6 sm:p-8"
+                style={{ animationDelay: `${0.15 + index * 0.1}s` }}
+              >
+                <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-sm uppercase tracking-[0.3em] text-slate-200/60">
-                      StageSnap
+                    <p className="text-xs uppercase tracking-[0.3em] text-slate-200/60">
+                      {product.eyebrow}
                     </p>
-                    <h2 className="text-2xl font-semibold">
-                      AI Real Estate Staging
-                    </h2>
+                    <h3 className="mt-2 text-2xl font-semibold">
+                      {product.name}
+                    </h3>
                   </div>
                   <span className="rounded-full border border-emerald-400/40 bg-emerald-400/10 px-3 py-1 text-xs text-emerald-200">
                     Live
                   </span>
                 </div>
-                <div className="grid gap-4">
-                  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/70 to-slate-800/40 p-5">
-                    <p className="text-sm text-slate-200/70">Before</p>
-                    <img src="/images/stagesnap/before-1.png" alt="Before staging" className="mt-4 h-20 w-full rounded-xl object-cover" />
+
+                <ProductVisual visual={product.visual} />
+
+                <p className="text-sm leading-relaxed text-slate-200/75">
+                  {product.description}
+                </p>
+
+                <div className="mt-auto flex items-center justify-between gap-4 border-t border-white/10 pt-4">
+                  <div className="text-xs text-slate-200/70">
+                    <span>{product.metricLabel}</span>
+                    <span className="ml-3 text-slate-100">
+                      {product.metricValue}
+                    </span>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-sky-500/20 via-cyan-500/10 to-indigo-500/20 p-5">
-                    <p className="text-sm text-slate-100/80">After</p>
-                    <img src="/images/stagesnap/after-1.png" alt="After staging" className="mt-4 h-20 w-full rounded-xl object-cover" />
-                  </div>
+                  <a
+                    className="group inline-flex items-center gap-2 text-sm font-semibold text-cyan-200 transition hover:text-white"
+                    href={product.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Visit {product.domain}
+                    <span className="transition group-hover:translate-x-1">
+                      →
+                    </span>
+                  </a>
                 </div>
-                <div className="flex items-center justify-between text-xs text-slate-200/70">
-                  <span>Render time</span>
-                  <span className="text-slate-100">~30 sec</span>
-                </div>
-              </div>
-            </div>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -248,7 +405,10 @@ export default function Home() {
               A studio built to ship.
             </h2>
             <p className="text-base text-slate-200/75">
-              Harding Labs exists to invent, build, and launch AI products. StageSnap is the flagship, and we&apos;re open to collaboration where there&apos;s clear synergy — but we&apos;re not a dev studio or agency for hire.
+              Harding Labs exists to invent, build, and launch AI products.
+              StageSnap and Vibecation are live. We&apos;re open to collaboration
+              where there&apos;s clear synergy, but we&apos;re not a dev studio
+              or agency for hire.
             </p>
             <div className="flex flex-wrap gap-3">
               {stack.map((item) => (
@@ -290,18 +450,18 @@ export default function Home() {
                 Ready to build what comes next?
               </h2>
               <p className="text-sm text-slate-200/70">
-                Explore StageSnap or reach out if you see a clear product-aligned
-                collaboration.
+                Try StageSnap or Vibecation, or reach out if you see a clear
+                product-aligned collaboration.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
                 className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/40 hover:bg-white/5"
-                href="https://stagesnap.xyz"
+                href="https://vibecation.xyz"
                 target="_blank"
                 rel="noreferrer"
               >
-                Visit stagesnap.xyz
+                Visit vibecation.xyz
               </a>
               <a
                 className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/20"
@@ -317,7 +477,7 @@ export default function Home() {
 
         <footer className="flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-200/60 sm:flex-row sm:items-center">
           <span>© 2026 Harding Labs. All rights reserved.</span>
-          <span>Product studio • StageSnap • AI imaging</span>
+          <span>Product studio · StageSnap · Vibecation</span>
         </footer>
       </main>
     </div>
