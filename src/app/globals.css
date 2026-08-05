@@ -1,18 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #05070b;
-  --foreground: #eef2ff;
-  --accent: #60a5fa;
-  --accent-2: #22d3ee;
-  --muted: #94a3b8;
+  --background: #070a09;
+  --foreground: #f2f5f4;
+  --accent: #2dd4bf;
+  --muted: #93a8a2;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: #2dd4bf;
+  --color-muted: #93a8a2;
   --font-sans: var(--font-space);
-  --font-mono: var(--font-sora);
+  --font-serif: var(--font-instrument);
 }
 
 html {
@@ -26,26 +27,16 @@ body {
 }
 
 ::selection {
-  background: rgba(96, 165, 250, 0.25);
+  background: rgba(45, 212, 191, 0.3);
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-14px);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
+/* Soft page atmosphere without relying on a flat fill alone. */
+.dot-grid {
+  background-image: radial-gradient(
+    rgba(242, 245, 244, 0.055) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
 }
 
 @keyframes fade-up {
@@ -59,40 +50,15 @@ body {
   }
 }
 
-@keyframes glow {
+@keyframes pulse-dot {
   0%,
   100% {
-    box-shadow: 0 0 30px rgba(96, 165, 250, 0.35);
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55);
   }
   50% {
-    box-shadow: 0 0 60px rgba(34, 211, 238, 0.45);
-  }
-}
-
-@keyframes loader-fade {
-  0%,
-  78% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes draw-line {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes bolt-in {
-  0% {
-    opacity: 0;
-    stroke-dashoffset: 1;
-  }
-  100% {
-    opacity: 1;
-    stroke-dashoffset: 0;
+    opacity: 0.7;
+    box-shadow: 0 0 0 5px rgba(52, 211, 153, 0);
   }
 }
 
@@ -100,46 +66,44 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-  .animate-float {
-    animation: float 10s ease-in-out infinite;
-  }
-  .animate-float-delayed {
-    animation: float 12s ease-in-out infinite;
-    animation-delay: 1.8s;
-  }
-  .animate-shimmer {
-    background-size: 200% 200%;
-    animation: shimmer 6s ease infinite;
-  }
   .animate-fade-up {
+    opacity: 0;
     animation: fade-up 0.8s ease forwards;
   }
-  .animate-glow {
-    animation: glow 4s ease-in-out infinite;
+  .animate-pulse-dot {
+    animation: pulse-dot 2.4s ease-in-out infinite;
   }
-  .glass {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    backdrop-filter: blur(16px);
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(242, 245, 244, 0.14);
   }
-  .loader-overlay {
-    animation: loader-fade 1.8s ease forwards;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  .loader-line {
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    animation: draw-line 0.9s ease forwards;
+  .reveal,
+  .animate-fade-up {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
   }
-  .loader-bolt {
-    opacity: 0;
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-    animation: bolt-in 0.45s ease forwards;
-    animation-delay: 0.95s;
-  }
-  .loader-node {
-    opacity: 0;
-    animation: bolt-in 0.35s ease forwards;
-    animation-delay: 1.15s;
+  .animate-pulse-dot {
+    animation: none;
   }
 }

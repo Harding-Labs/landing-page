@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
-import { Sora, Space_Grotesk } from "next/font/google";
+import { Instrument_Serif, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import LoadingAnimation from "@/components/LoadingAnimation";
-
-const sora = Sora({
-  variable: "--font-sora",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space",
@@ -15,10 +9,18 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Harding Labs | AI Product Studio",
+  title: "Harding Labs — AI product studio",
   description:
-    "Harding Labs builds and launches AI-native apps. StageSnap transforms listing photos with Declutter, Empty Room, and Furnish modes; Vibecation turns Instagram into Travel DNA and trip plans.",
+    "Harding Labs is an independent AI product studio led by Davin Harding. StageSnap declutters, empties, or furnishes listing photos in about 30 seconds. Vibecation turns an Instagram grid into a trip plan. Both are live.",
 };
 
 export default function RootLayout({
@@ -28,7 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sora.variable} ${spaceGrotesk.variable} antialiased`}>
+      <body
+        className={`${spaceGrotesk.variable} ${instrumentSerif.variable} antialiased`}
+      >
         <LoadingAnimation />
         {children}
       </body>

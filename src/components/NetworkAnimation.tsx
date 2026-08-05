@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface Node {
   x: number;
@@ -19,15 +19,8 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const nodesRef = useRef<Node[]>([]);
   const mouseRef = useRef({ x: 0, y: 0, active: false });
-  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isClient) return;
-
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -37,7 +30,7 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
     const resizeCanvas = () => {
       const container = canvas.parentElement;
       if (!container) return;
-      
+
       const rect = container.getBoundingClientRect();
       canvas.width = rect.width;
       canvas.height = rect.height;
@@ -46,7 +39,6 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize nodes
     const nodeCount = window.innerWidth < 768 ? 40 : 120;
     nodesRef.current = Array.from({ length: nodeCount }, (_, i) => ({
       x: Math.random() * canvas.width,
@@ -54,7 +46,7 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
       vx: (Math.random() - 0.5) * 0.3,
       vy: (Math.random() - 0.5) * 0.3,
       radius: Math.random() * 2 + 1,
-      isHighlight: i % 12 === 0, // Every 12th node is a highlight
+      isHighlight: i % 12 === 0,
     }));
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -91,21 +83,17 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
       const mouseRadiusSq = mouseRadius * mouseRadius;
       const mouseInfluence: number[] = new Array(nodes.length).fill(0);
 
-      // Update nodes and compute mouse influence
+      // Update positions, bounce, and mouse attraction
       nodes.forEach((node, i) => {
-        // Update position
         node.x += node.vx;
         node.y += node.vy;
 
-        // Bounce off edges
         if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
         if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
 
-        // Keep in bounds
         node.x = Math.max(0, Math.min(canvas.width, node.x));
         node.y = Math.max(0, Math.min(canvas.height, node.y));
 
-        // Mouse interaction - attract toward cursor
         if (mouse.active) {
           const dx = mouse.x - node.x;
           const dy = mouse.y - node.y;
@@ -127,7 +115,6 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
         }
       });
 
-      // Draw connections
       nodes.forEach((node, i) => {
         nodes.forEach((otherNode, j) => {
           if (j <= i) return;
@@ -142,7 +129,7 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
             const glowBoost = mouse.active
               ? Math.min(0.25, (mouseInfluence[i] + mouseInfluence[j]) * 0.35)
               : 0;
-            ctx.strokeStyle = `rgba(34, 211, 238, ${baseOpacity + glowBoost})`;
+            ctx.strokeStyle = `rgba(45, 212, 191, ${baseOpacity + glowBoost})`;
             ctx.lineWidth = 0.5 + glowBoost * 1.5;
             ctx.beginPath();
             ctx.moveTo(node.x, node.y);
@@ -152,7 +139,6 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
         });
       });
 
-      // Draw nodes
       nodes.forEach((node) => {
         const gradient = ctx.createRadialGradient(
           node.x,
@@ -164,18 +150,18 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
         );
 
         if (node.isHighlight) {
-          gradient.addColorStop(0, 'rgba(34, 211, 238, 0.9)');
-          gradient.addColorStop(0.5, 'rgba(34, 211, 238, 0.4)');
-          gradient.addColorStop(1, 'rgba(34, 211, 238, 0)');
+          gradient.addColorStop(0, 'rgba(45, 212, 191, 0.9)');
+          gradient.addColorStop(0.5, 'rgba(45, 212, 191, 0.4)');
+          gradient.addColorStop(1, 'rgba(45, 212, 191, 0)');
           ctx.fillStyle = gradient;
           ctx.beginPath();
           ctx.arc(node.x, node.y, node.radius * 4, 0, Math.PI * 2);
           ctx.fill();
         }
 
-        gradient.addColorStop(0, 'rgba(96, 165, 250, 1)');
-        gradient.addColorStop(1, 'rgba(96, 165, 250, 0.3)');
-        
+        gradient.addColorStop(0, 'rgba(178, 245, 234, 0.9)');
+        gradient.addColorStop(1, 'rgba(45, 212, 191, 0.3)');
+
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
@@ -191,9 +177,9 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
           mouse.y,
           mouseRadius
         );
-        haloGradient.addColorStop(0, 'rgba(34, 211, 238, 0.18)');
-        haloGradient.addColorStop(0.6, 'rgba(34, 211, 238, 0.08)');
-        haloGradient.addColorStop(1, 'rgba(34, 211, 238, 0)');
+        haloGradient.addColorStop(0, 'rgba(45, 212, 191, 0.18)');
+        haloGradient.addColorStop(0.6, 'rgba(45, 212, 191, 0.08)');
+        haloGradient.addColorStop(1, 'rgba(45, 212, 191, 0)');
         ctx.fillStyle = haloGradient;
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, mouseRadius, 0, Math.PI * 2);
@@ -211,15 +197,7 @@ export default function NetworkAnimation({ className = '' }: NetworkAnimationPro
       canvas.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationId);
     };
-  }, [isClient]);
-
-  if (!isClient) {
-    return (
-      <div className={`flex h-full w-full items-center justify-center ${className}`}>
-        <div className="h-64 w-64 animate-pulse rounded-full bg-cyan-400/20 blur-3xl" />
-      </div>
-    );
-  }
+  }, []);
 
   return (
     <div className={`h-full w-full ${className}`}>

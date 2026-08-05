@@ -60,5 +60,11 @@ export default function LoadingAnimation() {
     </script>
   `;
 
-  return <div dangerouslySetInnerHTML={{ __html: overlayHTML }} />;
+  // Browser normalizes inline styles (and may remove the overlay) before hydrate.
+  return (
+    <div
+      suppressHydrationWarning
+      dangerouslySetInnerHTML={{ __html: overlayHTML }}
+    />
+  );
 }
