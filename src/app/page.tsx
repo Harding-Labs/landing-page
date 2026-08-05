@@ -15,7 +15,7 @@ const highlights = [
   {
     title: "Two products live",
     description:
-      "StageSnap stages real estate photos with generative AI. Vibecation turns an Instagram grid into Travel DNA and a day-by-day trip plan.",
+      "StageSnap declutters, empties, or furnishes real estate photos with generative AI. Vibecation turns an Instagram grid into Travel DNA and a day-by-day trip plan.",
   },
 ];
 
@@ -30,14 +30,14 @@ const stack = [
 ];
 
 const stagesnapMetrics = [
-  { label: "~30 sec render time", accent: "cyan" as const },
-  { label: "90% cost savings vs traditional staging", accent: "cyan" as const },
-  { label: "Private preview", accent: "emerald" as const },
+  { label: "~30 sec processing", accent: "cyan" as const },
+  { label: "Declutter · Empty · Furnish", accent: "cyan" as const },
+  { label: "Live", accent: "emerald" as const },
 ];
 
 const vibecationMetrics = [
   { label: "~30 sec Travel DNA", accent: "cyan" as const },
-  { label: "$7 / trip unlock", accent: "cyan" as const },
+  { label: "$7 / trip", accent: "cyan" as const },
   { label: "Live", accent: "emerald" as const },
 ];
 
@@ -132,9 +132,9 @@ export default function Home() {
                 className="animate-fade-up text-balance text-base text-slate-200/80 sm:text-lg lg:text-xl"
                 style={{ animationDelay: "0.3s" }}
               >
-                Harding Labs builds and launches AI-native apps. StageSnap stages
-                real estate photos; Vibecation turns Instagram into Travel DNA
-                and trip plans.
+                Harding Labs builds and launches AI-native apps. StageSnap
+                transforms listing photos with Declutter, Empty Room, and Furnish
+                modes; Vibecation turns Instagram into Travel DNA and trip plans.
               </p>
             </div>
             <div
@@ -191,11 +191,11 @@ export default function Home() {
                 Products
               </p>
               <h2 className="text-3xl font-semibold sm:text-4xl lg:text-5xl">
-                StageSnap: AI Real Estate Staging
+                StageSnap: AI-Powered Real Estate Photo Staging
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-slate-200/75">
-                Transform empty or cluttered rooms into beautifully staged
-                listings in ~30 seconds.
+                Transform any room your way. Declutter messy spaces, empty rooms
+                completely, or add furniture in ~30 seconds.
               </p>
             </div>
 
@@ -230,12 +230,12 @@ export default function Home() {
                 Products
               </p>
               <h2 className="text-3xl font-semibold sm:text-4xl lg:text-5xl">
-                Vibecation: Instagram → Travel DNA
+                Vibecation: Drop your @ and find out where you should travel next
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-slate-200/75">
-                Drop an Instagram @ and get your Travel DNA in ~30 seconds:
-                traveler archetype, three matched destinations, and a $7
-                day-by-day trip you can refine with Polo.
+                AI reads your Instagram vibe and builds your Travel DNA in ~30
+                seconds: traveler archetype, three matched destinations, and a
+                $7 day-by-day trip you can refine with Polo.
               </p>
             </div>
 
