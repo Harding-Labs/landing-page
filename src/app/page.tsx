@@ -145,8 +145,8 @@ export default function Home() {
               className="animate-fade-up text-balance text-[2.6rem] font-medium leading-[1.05] sm:text-6xl lg:text-7xl"
               style={{ animationDelay: "0.2s" }}
             >
-              We build AI products and ship them{" "}
-              <em className="font-serif italic text-teal-300">ourselves</em>.
+              We build and ship AI products that feel like{" "}
+              <em className="font-serif italic text-teal-300">magic</em>.
             </h1>
 
             <p
@@ -155,7 +155,7 @@ export default function Home() {
             >
               Harding Labs is an independent product studio led by Davin
               Harding. Two products are live and taking payments right now. Try
-              them, poke around, and see what a focused team can ship.
+              them and see what 30 seconds of AI can do to a photo or a trip.
             </p>
 
             <div
