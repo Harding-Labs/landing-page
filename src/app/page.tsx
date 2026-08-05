@@ -1,357 +1,472 @@
 import NetworkAnimation from "@/components/NetworkAnimation";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
+import Reveal from "@/components/Reveal";
 
-const highlights = [
+const stats = [
+  { value: "02", label: "Products live", detail: "Both taking payments today" },
   {
-    title: "Applied AI, not hype",
-    description:
-      "We build and launch our own products that turn real-world workflows into durable, revenue-generating platforms.",
+    value: "~30s",
+    label: "Avg. delivery time",
+    detail: "Same speed across every product we ship",
+  },
+  { value: "100%", label: "In-house", detail: "Design, models, billing, launch" },
+];
+
+const principles = [
+  {
+    number: "01",
+    title: "We own what we ship",
+    body: "Every product here is ours, end to end. We live with the results, so nothing goes out that we would not use ourselves.",
   },
   {
-    title: "Products over services",
-    description:
-      "Harding Labs builds its own products, not client work. We stay focused on what we own and ship.",
+    number: "02",
+    title: "Live means live",
+    body: '"Launching soon" does not count around here. Both products take real payments from real users today, and this page says so only because they do.',
   },
   {
-    title: "Two products live",
-    description:
-      "StageSnap declutters, empties, or furnishes real estate photos with generative AI. Vibecation turns an Instagram grid into Travel DNA and a day-by-day trip plan.",
+    number: "03",
+    title: "Small on purpose",
+    body: "We stay small enough that everyone touches the whole stack, from model pipelines to UX to billing. Decisions take minutes, and there is nowhere for quality to hide.",
   },
 ];
 
-const stack = [
-  "Computer Vision",
-  "Generative Imaging",
-  "Agentic Systems",
-  "Product Strategy",
-  "Launch Systems",
-  "Workflow Automation",
-  "Human-Centered UX",
+const navLinks = [
+  { href: "#work", label: "Work" },
+  { href: "#studio", label: "Studio" },
+  { href: "#contact", label: "Contact" },
 ];
 
-const stagesnapMetrics = [
-  { label: "~30 sec processing", accent: "cyan" as const },
-  { label: "Declutter · Empty · Furnish", accent: "cyan" as const },
-  { label: "Live", accent: "emerald" as const },
-];
+const ctaPrimary =
+  "group inline-flex items-center justify-center gap-2 rounded-full bg-teal-300 px-7 py-3 text-sm font-semibold text-[#04231e] transition hover:-translate-y-0.5 hover:bg-teal-200 hover:shadow-lg hover:shadow-teal-400/25";
 
-const vibecationMetrics = [
-  { label: "~30 sec Travel DNA", accent: "cyan" as const },
-  { label: "$7 / trip", accent: "cyan" as const },
-  { label: "Live", accent: "emerald" as const },
-];
+const ctaSecondary =
+  "group inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-7 py-3 text-sm font-semibold text-white/90 transition hover:border-white/40 hover:bg-white/5";
 
-function MetricRow({
-  metrics,
+function ArrowUpRight() {
+  return (
+    <svg
+      className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M4 12L12 4M12 4H5.5M12 4v6.5" />
+    </svg>
+  );
+}
+
+function SectionHeading({
+  kicker,
+  children,
 }: {
-  metrics: { label: string; accent: "cyan" | "emerald" }[];
+  kicker: string;
+  children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-200/70">
-      {metrics.map((metric) => (
-        <div key={metric.label} className="flex items-center gap-2">
-          <span
-            className={`h-1.5 w-1.5 rounded-full ${
-              metric.accent === "emerald" ? "bg-emerald-400" : "bg-cyan-400"
-            }`}
-          />
-          <span>{metric.label}</span>
-        </div>
-      ))}
+    <div className="space-y-4">
+      <p className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-teal-300/90">
+        <span className="h-px w-8 bg-teal-300/60" />
+        {kicker}
+      </p>
+      <h2 className="max-w-2xl text-balance text-3xl font-medium leading-tight sm:text-4xl lg:text-5xl">
+        {children}
+      </h2>
     </div>
+  );
+}
+
+function LiveBadge({ name }: { name: string }) {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs text-slate-100/85">
+      <span className="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-emerald-400" />
+      {name}
+    </span>
   );
 }
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#05070b] text-white">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-32 top-12 h-80 w-80 rounded-full bg-sky-500/20 blur-3xl" />
-        <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl" />
-        <div className="absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl" />
-      </div>
-
-      <div className="relative flex min-h-[100dvh] flex-col">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <NetworkAnimation />
-        </div>
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[#05070b]/60 via-transparent to-[#05070b]/60" />
-
-        <nav className="pointer-events-none relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-10 text-sm text-slate-200/80 sm:px-10">
-          <div className="pointer-events-auto flex items-center gap-2">
-            <img src="/logo.png" alt="Harding Labs" className="h-6 w-6 rounded" />
-            <span className="font-semibold tracking-[0.2em] text-slate-200">
+    <div className="dot-grid relative min-h-screen overflow-x-hidden bg-background text-foreground">
+      <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-background/80 backdrop-blur-md">
+        <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
+          <a href="#top" className="flex items-center gap-2.5">
+            <img src="/logo.png" alt="Harding Labs" className="h-7 w-7 rounded" />
+            <span className="text-sm font-semibold tracking-[0.18em] uppercase">
               Harding Labs
             </span>
-          </div>
-          <div className="pointer-events-auto hidden items-center gap-6 sm:flex">
+          </a>
+          <div className="flex items-center gap-6 text-sm text-slate-200/70">
+            <div className="hidden items-center gap-6 sm:flex">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  className="transition hover:text-white"
+                  href={link.href}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
             <a
-              className="transition hover:text-white"
-              href="https://stagesnap.xyz"
-              target="_blank"
-              rel="noreferrer"
-            >
-              StageSnap
-            </a>
-            <a
-              className="transition hover:text-white"
-              href="https://vibecation.xyz"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Vibecation
-            </a>
-            <a
-              className="transition hover:text-white"
+              className="group inline-flex items-center gap-1.5 rounded-full border border-teal-300/30 bg-teal-300/10 px-4 py-1.5 text-xs font-semibold text-teal-200 transition hover:border-teal-300/60 hover:bg-teal-300/20"
               href="https://davin.io"
               target="_blank"
               rel="noreferrer"
             >
-              Davin
+              Meet Davin
+              <ArrowUpRight />
             </a>
           </div>
         </nav>
+      </header>
 
-        <section className="pointer-events-none relative z-10 flex flex-1 items-center justify-center px-6">
-          <div className="pointer-events-auto max-w-3xl space-y-4 text-center sm:space-y-8">
+      <section id="top" className="relative scroll-mt-24 overflow-hidden">
+        <div className="absolute inset-0 opacity-60">
+          <NetworkAnimation />
+        </div>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+        <div className="pointer-events-none absolute -right-40 top-10 h-96 w-96 rounded-full bg-teal-400/10 blur-3xl" />
+
+        <div className="pointer-events-none relative mx-auto flex min-h-[88dvh] w-full max-w-6xl flex-col justify-center px-6 py-24 sm:px-10">
+          <div className="pointer-events-auto max-w-4xl space-y-8">
             <div
-              className="animate-fade-up mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.3em] text-slate-200/80"
+              className="animate-fade-up flex flex-wrap items-center gap-3"
               style={{ animationDelay: "0.1s" }}
             >
-              <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              AI products from zero to launch
+              <LiveBadge name="StageSnap · live" />
+              <LiveBadge name="Vibecation · live" />
             </div>
-            <div className="space-y-4 sm:space-y-6">
-              <h1
-                className="animate-fade-up text-balance text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-6xl"
-                style={{ animationDelay: "0.2s" }}
-              >
-                We design, build, and ship AI-native applications.
-              </h1>
-              <p
-                className="animate-fade-up text-balance text-base text-slate-200/80 sm:text-lg lg:text-xl"
-                style={{ animationDelay: "0.3s" }}
-              >
-                Harding Labs builds and launches AI-native apps. StageSnap
-                transforms listing photos with Declutter, Empty Room, and Furnish
-                modes; Vibecation turns Instagram into Travel DNA and trip plans.
-              </p>
-            </div>
+
+            <h1
+              className="animate-fade-up text-balance text-[2.6rem] font-medium leading-[1.05] sm:text-6xl lg:text-7xl"
+              style={{ animationDelay: "0.2s" }}
+            >
+              We build AI products and ship them{" "}
+              <em className="font-serif italic text-teal-300">ourselves</em>.
+            </h1>
+
+            <p
+              className="animate-fade-up max-w-xl text-pretty text-base leading-relaxed text-slate-200/75 sm:text-lg"
+              style={{ animationDelay: "0.3s" }}
+            >
+              Harding Labs is an independent product studio led by Davin
+              Harding. Two products are live and taking payments right now. Try
+              them, poke around, and see what a focused team can ship.
+            </p>
+
             <div
-              className="animate-fade-up flex flex-col justify-center gap-4 sm:flex-row"
+              className="animate-fade-up flex flex-col gap-3 pt-2 sm:flex-row"
               style={{ animationDelay: "0.4s" }}
             >
-              <a
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-400 via-cyan-400 to-indigo-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 transition hover:-translate-y-0.5 hover:shadow-cyan-500/50"
-                href="#products"
-              >
-                See Our Work
-                <span className="transition group-hover:translate-y-1">↓</span>
+              <a className={ctaPrimary} href="#work">
+                See the work
               </a>
               <a
-                className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/40 hover:bg-white/5"
+                className={ctaSecondary}
                 href="https://davin.io"
                 target="_blank"
                 rel="noreferrer"
               >
-                Meet Davin
+                About the founder
+                <ArrowUpRight />
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative border-y border-white/[0.06]">
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-1 divide-white/[0.06] max-sm:divide-y sm:grid-cols-3 sm:divide-x">
+          {stats.map((stat, index) => (
+            <Reveal key={stat.label} delay={index * 80}>
+              <div className="space-y-1.5 px-6 py-8 sm:px-8 sm:py-10">
+                <p className="font-serif text-4xl text-teal-300 sm:text-5xl">
+                  {stat.value}
+                </p>
+                <p className="text-sm font-semibold">{stat.label}</p>
+                <p className="text-xs leading-relaxed text-slate-200/55">
+                  {stat.detail}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <main className="relative mx-auto w-full max-w-6xl px-6 sm:px-10">
+        <section id="work" className="pt-24 sm:pt-32">
+          <Reveal>
+            <SectionHeading kicker="The work">
+              Shipped, live, and{" "}
+              <em className="font-serif italic text-teal-300">
+                earning its keep
+              </em>
+              .
+            </SectionHeading>
+          </Reveal>
+
+          <div id="stagesnap" className="mt-16 scroll-mt-20 sm:mt-20">
+            <Reveal>
+              <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+                <div className="space-y-6">
+                  <p className="flex items-baseline gap-4">
+                    <span className="font-serif text-2xl text-white/25">01</span>
+                    <span className="text-xs uppercase tracking-[0.25em] text-teal-300/90">
+                      StageSnap · stagesnap.xyz
+                    </span>
+                  </p>
+                  <h3 className="text-balance text-2xl font-medium leading-snug sm:text-3xl">
+                    Real staging takes hours. StageSnap takes 30 seconds.
+                  </h3>
+                  <p className="text-pretty text-base leading-relaxed text-slate-200/70">
+                    Bad listing photos usually are not anyone&apos;s fault. Sellers
+                    and FSBO hosts shoot their own rooms, and high-volume
+                    agents and brokerages rarely have hours to spare getting
+                    every photo pixel-perfect before a listing goes live.
+                    StageSnap closes that gap: declutter a lived-in room,
+                    empty it out, or furnish it with generative AI in about 30
+                    seconds, versus the 2 to 4 hours a real staging job takes.
+                  </p>
+                  <p className="text-sm text-slate-200/50">
+                    Drag the sliders. Those are real outputs, not mockups.
+                  </p>
+                  <a
+                    className={ctaPrimary}
+                    href="https://stagesnap.xyz"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Try StageSnap
+                    <ArrowUpRight />
+                  </a>
+                </div>
+                <div className="grid gap-5">
+                  <BeforeAfterSlider
+                    beforeImage="/images/stagesnap/before-1.png"
+                    afterImage="/images/stagesnap/after-1.png"
+                    beforeLabel="Original"
+                    afterLabel="StageSnap"
+                  />
+                  <BeforeAfterSlider
+                    beforeImage="/images/stagesnap/before-2.png"
+                    afterImage="/images/stagesnap/after-2.png"
+                    beforeLabel="Original"
+                    afterLabel="StageSnap"
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          <div
+            id="vibecation"
+            className="mt-24 border-t border-white/[0.06] pt-24 sm:mt-32 sm:pt-32"
+          >
+            <Reveal>
+              <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+                <div className="space-y-6">
+                  <p className="flex items-baseline gap-4">
+                    <span className="font-serif text-2xl text-white/25">02</span>
+                    <span className="text-xs uppercase tracking-[0.25em] text-teal-300/90">
+                      Vibecation · vibecation.xyz
+                    </span>
+                  </p>
+                  <h3 className="text-balance text-2xl font-medium leading-snug sm:text-3xl">
+                    Your Instagram already knows your next trip.
+                  </h3>
+                  <p className="text-pretty text-base leading-relaxed text-slate-200/70">
+                    Drop your handle and Vibecation reads your grid: the
+                    colors, the places, the pace. Thirty seconds later you get
+                    a Travel DNA profile, three destinations that match it, and
+                    a $7 day-by-day plan you can refine with Polo, the built-in
+                    trip agent.
+                  </p>
+                  <p className="text-sm text-slate-200/50">
+                    That is the actual product, not a mockup.
+                  </p>
+                  <a
+                    className={ctaPrimary}
+                    href="https://vibecation.xyz"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Try Vibecation
+                    <ArrowUpRight />
+                  </a>
+                </div>
+                <div className="overflow-hidden rounded-2xl border border-white/10">
+                  <img
+                    src="/images/vibecation/landing.png"
+                    alt="Vibecation Travel DNA share card with matched destinations"
+                    className="block h-auto max-h-[34rem] w-full object-cover object-top"
+                  />
+                </div>
+              </div>
+            </Reveal>
           </div>
         </section>
 
-        <div className="pointer-events-none relative z-10 flex justify-center pb-4 sm:pb-8">
-          <a
-            href="#products"
-            className="pointer-events-auto animate-bounce text-slate-200/60 transition hover:text-slate-200"
-            aria-label="Scroll to products section"
-          >
-            <svg
-              className="h-8 w-8"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <main className="relative z-10 mx-auto flex max-w-6xl flex-col px-6 pb-20 sm:px-10">
-        <div id="products" className="scroll-mt-20">
-          <section id="stagesnap" className="mt-24 space-y-12 scroll-mt-20">
-            <div className="space-y-4 text-center">
-              <p className="text-xs uppercase tracking-[0.3em] text-cyan-400/80">
-                Products
-              </p>
-              <h2 className="text-3xl font-semibold sm:text-4xl lg:text-5xl">
-                StageSnap: AI-Powered Real Estate Photo Staging
-              </h2>
-              <p className="mx-auto max-w-2xl text-lg text-slate-200/75">
-                Transform any room your way. Declutter messy spaces, empty rooms
-                completely, or add furniture in ~30 seconds.
-              </p>
-            </div>
-
-            <div className="grid gap-8 lg:grid-cols-2">
-              <BeforeAfterSlider
-                beforeImage="/images/stagesnap/before-1.png"
-                afterImage="/images/stagesnap/after-1.png"
-              />
-              <BeforeAfterSlider
-                beforeImage="/images/stagesnap/before-2.png"
-                afterImage="/images/stagesnap/after-2.png"
-              />
-            </div>
-
-            <div className="flex flex-col items-center gap-6">
-              <MetricRow metrics={stagesnapMetrics} />
-              <a
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-400 via-cyan-400 to-indigo-400 px-8 py-4 text-base font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 transition hover:-translate-y-0.5 hover:shadow-cyan-500/50"
-                href="https://stagesnap.xyz"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Explore StageSnap
-                <span className="transition group-hover:translate-x-1">→</span>
-              </a>
-            </div>
-          </section>
-
-          <section id="vibecation" className="mt-24 space-y-12 scroll-mt-20">
-            <div className="space-y-4 text-center">
-              <p className="text-xs uppercase tracking-[0.3em] text-cyan-400/80">
-                Products
-              </p>
-              <h2 className="text-3xl font-semibold sm:text-4xl lg:text-5xl">
-                Vibecation: Drop your @ and find out where you should travel next
-              </h2>
-              <p className="mx-auto max-w-2xl text-lg text-slate-200/75">
-                AI reads your Instagram vibe and builds your Travel DNA in ~30
-                seconds: traveler archetype, three matched destinations, and a
-                $7 day-by-day trip you can refine with Polo.
-              </p>
-            </div>
-
-            <div className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-fuchsia-500/10 via-rose-500/5 to-orange-400/10 p-3 sm:p-4">
-              <img
-                src="/images/vibecation/landing.png"
-                alt="Vibecation Travel DNA share card with matched destinations"
-                className="mx-auto h-auto max-h-[32rem] w-full rounded-2xl object-cover object-top"
-              />
-            </div>
-
-            <div className="flex flex-col items-center gap-6">
-              <MetricRow metrics={vibecationMetrics} />
-              <a
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-400 via-cyan-400 to-indigo-400 px-8 py-4 text-base font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 transition hover:-translate-y-0.5 hover:shadow-cyan-500/50"
-                href="https://vibecation.xyz"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Explore Vibecation
-                <span className="transition group-hover:translate-x-1">→</span>
-              </a>
-            </div>
-          </section>
-        </div>
-
-        <section className="mt-24 grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.3em] text-slate-200/60">
-              About Harding Labs
-            </p>
-            <h2 className="text-3xl font-semibold sm:text-4xl">
-              A studio built to ship.
-            </h2>
-            <p className="text-base text-slate-200/75">
-              Harding Labs exists to invent, build, and launch AI products.
-              StageSnap and Vibecation are live. We&apos;re open to collaboration
-              where there&apos;s clear synergy, but we&apos;re not a dev studio
-              or agency for hire.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {stack.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-100/80 transition hover:border-white/40 hover:text-white"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid gap-4">
-            {highlights.map((item, index) => (
-              <div
-                key={item.title}
-                className="group animate-fade-up rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:-translate-y-1 hover:border-white/30 hover:bg-white/10"
-                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
-              >
-                <h3 className="text-lg font-semibold text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm text-slate-200/75">
-                  {item.description}
-                </p>
-              </div>
+        <section
+          id="studio"
+          className="mt-24 border-t border-white/[0.06] pt-24 sm:mt-32 sm:pt-32"
+        >
+          <Reveal>
+            <SectionHeading kicker="The studio">
+              How we{" "}
+              <em className="font-serif italic text-teal-300">work</em>.
+            </SectionHeading>
+          </Reveal>
+          <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.08] lg:grid-cols-3">
+            {principles.map((principle, index) => (
+              <Reveal key={principle.number} delay={index * 100} className="h-full">
+                <div className="flex h-full flex-col gap-5 bg-[#0a0e0d] p-8 transition-colors hover:bg-[#0d1211] sm:p-10">
+                  <span className="font-serif text-3xl text-teal-300/70">
+                    {principle.number}
+                  </span>
+                  <h3 className="text-lg font-semibold">{principle.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-200/65">
+                    {principle.body}
+                  </p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </section>
 
-        <section className="glass mt-24 rounded-3xl border border-white/10 px-8 py-10">
-          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-            <div className="space-y-3">
-              <p className="text-xs uppercase tracking-[0.3em] text-slate-200/60">
-                Connect
-              </p>
-              <h2 className="text-2xl font-semibold">
-                Ready to build what comes next?
-              </h2>
-              <p className="text-sm text-slate-200/70">
-                Try StageSnap or Vibecation, or reach out if you see a clear
-                product-aligned collaboration.
-              </p>
+        <section className="mt-24 border-t border-white/[0.06] pt-24 sm:mt-32 sm:pt-32">
+          <Reveal>
+            <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+              <SectionHeading kicker="From the founder">
+                Why this studio{" "}
+                <em className="font-serif italic text-teal-300">exists</em>.
+              </SectionHeading>
+              <div className="space-y-6 text-pretty text-base leading-relaxed text-slate-200/75 sm:text-lg">
+                <p>
+                  I started Harding Labs after watching too many good AI demos
+                  die before they became products. The gap was never the model.
+                  It was everything around it: the UX, the billing, the launch,
+                  the follow-through.
+                </p>
+                <p>
+                  So that is what this studio does. I set the direction, and
+                  we build the whole thing and put it in front of paying
+                  users. StageSnap and Vibecation are the proof so far. If you
+                  are hiring, or building something adjacent, and want to know
+                  how any of it works under the hood, ask me. I like talking
+                  about the unglamorous parts.
+                </p>
+                <div className="flex items-center gap-4 pt-2">
+                  <div>
+                    <p className="font-serif text-xl italic text-white">
+                      Davin Harding
+                    </p>
+                    <p className="text-sm text-slate-200/55">
+                      Founder, Harding Labs
+                    </p>
+                  </div>
+                  <a
+                    className="group ml-auto inline-flex items-center gap-1.5 text-sm font-semibold text-teal-300 transition hover:text-teal-200"
+                    href="https://davin.io"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    davin.io
+                    <ArrowUpRight />
+                  </a>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
+          </Reveal>
+        </section>
+
+        <section id="contact" className="pb-8 pt-24 sm:pt-32">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-br from-teal-400/[0.12] via-transparent to-transparent px-8 py-14 sm:px-14 sm:py-20">
+              <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-teal-400/15 blur-3xl" />
+              <div className="relative max-w-2xl space-y-6">
+                <h2 className="text-balance text-3xl font-medium leading-tight sm:text-5xl">
+                  Say{" "}
+                  <em className="font-serif italic text-teal-300">hello</em>.
+                </h2>
+                <p className="text-pretty text-base leading-relaxed text-slate-200/75 sm:text-lg">
+                  Hiring for an AI product role, exploring a collaboration, or
+                  just curious how something here was built? Reach out. Email
+                  gets answered fastest.
+                </p>
+                <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+                  <a
+                    className={ctaPrimary}
+                    href="https://davin.io"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Contact Davin
+                    <ArrowUpRight />
+                  </a>
+                  <a
+                    className={ctaSecondary}
+                    href="https://stagesnap.xyz"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    stagesnap.xyz
+                    <ArrowUpRight />
+                  </a>
+                  <a
+                    className={ctaSecondary}
+                    href="https://vibecation.xyz"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    vibecation.xyz
+                    <ArrowUpRight />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        <footer className="overflow-hidden border-t border-white/[0.06] pb-10 pt-12">
+          <div className="flex flex-col items-start justify-between gap-4 text-xs text-slate-200/55 sm:flex-row sm:items-center">
+            <span>© 2026 Harding Labs. All rights reserved.</span>
+            <div className="flex items-center gap-5">
               <a
-                className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/40 hover:bg-white/5"
+                className="transition hover:text-white"
                 href="https://stagesnap.xyz"
                 target="_blank"
                 rel="noreferrer"
               >
-                Visit stagesnap.xyz
+                StageSnap
               </a>
               <a
-                className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-white/40 hover:bg-white/5"
+                className="transition hover:text-white"
                 href="https://vibecation.xyz"
                 target="_blank"
                 rel="noreferrer"
               >
-                Visit vibecation.xyz
+                Vibecation
               </a>
               <a
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/20"
+                className="transition hover:text-white"
                 href="https://davin.io"
                 target="_blank"
                 rel="noreferrer"
               >
-                Contact Davin
+                davin.io
               </a>
             </div>
           </div>
-        </section>
-
-        <footer className="mt-24 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-200/60 sm:flex-row sm:items-center">
-          <span>© 2026 Harding Labs. All rights reserved.</span>
-          <span>Product studio · StageSnap · Vibecation</span>
+          <p
+            aria-hidden
+            className="text-outline mt-10 select-none whitespace-nowrap text-center text-[13vw] font-semibold leading-none tracking-tight sm:text-[10vw]"
+          >
+            HARDING LABS
+          </p>
         </footer>
       </main>
     </div>
