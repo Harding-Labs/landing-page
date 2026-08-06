@@ -1,4 +1,4 @@
-import NetworkAnimation from "@/components/NetworkAnimation";
+import CircuitTraces from "@/components/CircuitTraces";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import Reveal from "@/components/Reveal";
 
@@ -9,7 +9,11 @@ const stats = [
     label: "Avg. delivery time",
     detail: "Same speed across every product we ship",
   },
-  { value: "100%", label: "In-house", detail: "Design, models, billing, launch" },
+  {
+    value: "E2E",
+    label: "Owned stack",
+    detail: "Design, product, billing, launch. Frontier models underneath.",
+  },
 ];
 
 const principles = [
@@ -20,8 +24,8 @@ const principles = [
   },
   {
     number: "02",
-    title: "Live means live",
-    body: '"Launching soon" does not count around here. Both products take real payments from real users today, and this page says so only because they do.',
+    title: "AI-native, end to end",
+    body: "Design, development, iteration, deployment, and how the business runs all lean on AI. That is how we move this fast without a big team.",
   },
   {
     number: "03",
@@ -125,8 +129,8 @@ export default function Home() {
       </header>
 
       <section id="top" className="relative scroll-mt-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-60">
-          <NetworkAnimation />
+        <div className="absolute inset-0 opacity-90">
+          <CircuitTraces />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
         <div className="pointer-events-none absolute -right-40 top-10 h-96 w-96 rounded-full bg-teal-400/10 blur-3xl" />
@@ -203,7 +207,7 @@ export default function Home() {
             <SectionHeading kicker="The work">
               Shipped, live, and{" "}
               <em className="font-serif italic text-teal-300">
-                earning its keep
+                earning their keep
               </em>
               .
             </SectionHeading>
@@ -298,11 +302,11 @@ export default function Home() {
                     <ArrowUpRight />
                   </a>
                 </div>
-                <div className="overflow-hidden rounded-2xl border border-white/10">
+                <div className="self-start overflow-hidden rounded-2xl border border-white/10">
                   <img
                     src="/images/vibecation/landing.png"
                     alt="Vibecation Travel DNA share card with matched destinations"
-                    className="block h-auto max-h-[34rem] w-full object-cover object-top"
+                    className="block h-auto w-full"
                   />
                 </div>
               </div>
@@ -346,10 +350,10 @@ export default function Home() {
               </SectionHeading>
               <div className="space-y-6 text-pretty text-base leading-relaxed text-slate-200/75 sm:text-lg">
                 <p>
-                  I started Harding Labs after watching too many good AI demos
-                  die before they became products. The gap was never the model.
-                  It was everything around it: the UX, the billing, the launch,
-                  the follow-through.
+                  I started Harding Labs because I wanted to own something
+                  myself. Building applications with AI is what genuinely
+                  excites me, and I wanted a place where that work ships under
+                  my name instead of dying as another demo.
                 </p>
                 <p>
                   So that is what this studio does. I set the direction, and
