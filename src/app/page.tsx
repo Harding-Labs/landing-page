@@ -353,7 +353,7 @@ export default function Home() {
                   I started Harding Labs because I wanted to own something
                   myself. Building applications with AI is what genuinely
                   excites me, and I wanted a place where that work ships under
-                  my name instead of dying as another demo.
+                  my name instead of someone else's.
                 </p>
                 <p>
                   So that is what this studio does. I set the direction, and
