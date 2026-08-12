@@ -468,7 +468,7 @@ export default function Home() {
           <div className="@container -mx-6 overflow-hidden sm:-mx-10">
             <p
               aria-hidden
-              className="text-outline mt-10 select-none whitespace-nowrap text-center text-[calc(100cqw/8.25)] font-semibold leading-none tracking-tight"
+              className="text-outline mt-10 select-none whitespace-nowrap text-center text-[calc(100cqw/7.8)] font-semibold leading-none tracking-tight"
             >
               HARDING LABS
             </p>
