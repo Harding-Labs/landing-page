@@ -435,7 +435,7 @@ export default function Home() {
           </Reveal>
         </section>
 
-        <footer className="overflow-hidden border-t border-white/[0.06] pb-10 pt-12">
+        <footer className="border-t border-white/[0.06] pb-10 pt-12">
           <div className="flex flex-col items-start justify-between gap-4 text-xs text-slate-200/55 sm:flex-row sm:items-center">
             <span>© 2026 Harding Labs. All rights reserved.</span>
             <div className="flex items-center gap-5">
@@ -465,12 +465,14 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <p
-            aria-hidden
-            className="text-outline mt-10 select-none whitespace-nowrap text-center text-[13vw] font-semibold leading-none tracking-tight sm:text-[10vw]"
-          >
-            HARDING LABS
-          </p>
+          <div className="@container -mx-6 overflow-hidden sm:-mx-10">
+            <p
+              aria-hidden
+              className="text-outline mt-10 select-none whitespace-nowrap text-center text-[calc(100cqw/7.8)] font-semibold leading-none tracking-tight"
+            >
+              HARDING LABS
+            </p>
+          </div>
         </footer>
       </main>
     </div>
