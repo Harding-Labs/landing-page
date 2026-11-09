@@ -2,7 +2,7 @@
 
 The marketing site for **Harding Labs**, an independent AI product studio. It introduces the studio, showcases the live products ([StageSnap](https://stagesnap.xyz) and [Vibecation](https://vibecation.xyz)), and links to the founder's portfolio.
 
-**Live:** [landing-page-six-green-16.vercel.app](https://landing-page-six-green-16.vercel.app)
+**Live:** [hardinglabs.io](https://hardinglabs.io)
 
 ## Highlights
 
